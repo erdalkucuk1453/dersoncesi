@@ -45,7 +45,7 @@ function NewAssignmentWizardForm() {
   // Wizard state
   const [selectedClassId, setSelectedClassId] = useState<string>(preSelectedClassId || "");
   const [selectedSubject, setSelectedSubject] = useState<string>("");
-  const [selectedGrade, setSelectedGrade] = useState<number>(7);
+  const [selectedGrade, setSelectedGrade] = useState<number>(8);
   const [availableUnits, setAvailableUnits] = useState<string[]>([]);
   const [selectedUnit, setSelectedUnit] = useState<string>("");
   const [outcomes, setOutcomes] = useState<OutcomeItem[]>([]);
@@ -339,13 +339,12 @@ function NewAssignmentWizardForm() {
 
             <div className="grid sm:grid-cols-2 gap-3">
               {[
-                "Türkçe",
                 "Matematik",
                 "Fen Bilimleri",
-                "İngilizce",
-                ...(selectedGrade <= 7 ? ["Sosyal Bilgiler"] : []),
-                ...(selectedGrade === 8 ? ["T.C. İnkılap Tarihi ve Atatürkçülük"] : []),
+                "T.C. İnkılap Tarihi ve Atatürkçülük",
                 "Din Kültürü ve Ahlak Bilgisi",
+                "İngilizce",
+                "Türkçe",
               ].map((subj) => (
                 <button
                   key={subj}

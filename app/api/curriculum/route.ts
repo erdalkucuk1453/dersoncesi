@@ -6,19 +6,19 @@ export const dynamic = "force-dynamic";
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = req.nextUrl;
-    const grade = searchParams.get("grade");
+    // Uygulama sadece 8. sınıflara özeldir
+    const gradeParam = searchParams.get("grade") || "8";
     const subject = searchParams.get("subject");
     const unitOrTheme = searchParams.get("unitOrTheme");
 
     const whereClause: {
-      grade?: number;
+      grade: number;
       subject?: string;
       unitOrTheme?: string;
-    } = {};
+    } = {
+      grade: parseInt(gradeParam, 10) || 8,
+    };
 
-    if (grade) {
-      whereClause.grade = parseInt(grade, 10);
-    }
     if (subject) {
       whereClause.subject = subject;
     }
@@ -28,14 +28,14 @@ export async function GET(req: NextRequest) {
 
     const outcomes = await prisma.curriculumOutcome.findMany({
       where: whereClause,
-      orderBy: [{ grade: "asc" }, { subject: "asc" }, { outcomeCode: "asc" }],
+      orderBy: [{ subject: "asc" }, { outcomeCode: "asc" }],
     });
 
-    // Also return available units if grade and subject are specified
+    // Also return available units for 8th grade if subject is specified
     let availableUnits: string[] = [];
-    if (grade && subject) {
+    if (subject) {
       const units = await prisma.curriculumOutcome.findMany({
-        where: { grade: parseInt(grade, 10), subject },
+        where: { grade: whereClause.grade, subject },
         select: { unitOrTheme: true },
         distinct: ["unitOrTheme"],
       });

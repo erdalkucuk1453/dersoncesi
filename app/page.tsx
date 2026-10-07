@@ -34,10 +34,10 @@ export default function LandingPage() {
     badgeBg: string;
   }>({
     name: "Matematik",
-    grade: "7. Sınıf",
+    grade: "8. Sınıf",
     icon: "%",
     time: "5 dk",
-    topic: "Rasyonel Sayılar ve Cebirsel İfadeler",
+    topic: "Çarpanlar ve Katlar & Üslü İfadeler",
     color: "from-indigo-600 to-indigo-700",
     badgeBg: "bg-indigo-600",
   });
@@ -45,19 +45,19 @@ export default function LandingPage() {
   const subjects = [
     {
       name: "Matematik",
-      grade: "7. Sınıf",
+      grade: "8. Sınıf",
       icon: "%",
       time: "5 dk",
-      topic: "Rasyonel Sayılar",
+      topic: "Çarpanlar ve Katlar",
       color: "from-indigo-600 to-indigo-700",
       badgeBg: "bg-indigo-600",
     },
     {
       name: "Fen Bilimleri",
-      grade: "7. Sınıf",
+      grade: "8. Sınıf",
       icon: "⚛",
       time: "4 dk",
-      topic: "Hücre ve Bölünmeler",
+      topic: "Mevsimlerin Oluşumu & DNA",
       color: "from-sky-500 to-sky-600",
       badgeBg: "bg-sky-500",
     },
@@ -65,17 +65,17 @@ export default function LandingPage() {
       name: "İnkılap Tarihi",
       grade: "8. Sınıf",
       icon: "🏛",
-      time: "5 dk",
+      time: "4 dk",
       topic: "Mustafa Kemal'in Öğrenim Hayatı",
       color: "from-amber-500 to-amber-600",
       badgeBg: "bg-amber-500",
     },
     {
-      name: "Türkçe",
-      grade: "6. Sınıf",
-      icon: "✎",
+      name: "Din Kültürü",
+      grade: "8. Sınıf",
+      icon: "☪",
       time: "3 dk",
-      topic: "Sözcükte Anlam ve Fiiller",
+      topic: "Kader İnancı ve Evrendeki Yasalar",
       color: "from-emerald-500 to-emerald-600",
       badgeBg: "bg-emerald-500",
     },
@@ -84,9 +84,18 @@ export default function LandingPage() {
       grade: "8. Sınıf",
       icon: "EN",
       time: "4 dk",
-      topic: "Friendship & Personal Traits",
+      topic: "Friendship & Making Offers",
       color: "from-purple-500 to-purple-600",
       badgeBg: "bg-purple-500",
+    },
+    {
+      name: "Türkçe",
+      grade: "8. Sınıf",
+      icon: "✎",
+      time: "4 dk",
+      topic: "Fiilimsiler ve Cümlenin Ögeleri",
+      color: "from-rose-500 to-rose-600",
+      badgeBg: "bg-rose-500",
     },
   ];
 
@@ -152,7 +161,7 @@ export default function LandingPage() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-indigo-100 text-indigo-700 text-xs sm:text-sm font-bold shadow-xs">
                 <ShieldCheck className="w-4 h-4 text-indigo-600" />
-                <span>MEB Eğitim Bakanlığı Türkiye Yüzyılı Maarif Modeli ile %100 Uyumlu</span>
+                <span>MEB 2026-2027 8. Sınıf Çerçeve Yıllık Planları İle %100 Uyumlu</span>
               </div>
 
               {/* Headline matching user screenshot Design 4 */}
@@ -171,7 +180,7 @@ export default function LandingPage() {
 
               {/* Subtitle / explanation */}
               <p className="text-slate-600 text-base sm:text-lg max-w-xl leading-relaxed">
-                Klasik ödev sitelerinin aksine; ortaokul öğrencilerinin derste öğretmenin anlatacağı konuyu anlayabilecek temel ön bilgiye 5 dakikada ulaşmasını sağlar.
+                8. sınıflara ve LGS başarısına özel: Klasik ödev sitelerinin aksine, öğrencilerin derste öğretmenin anlatacağı konuyu ilk andan takip edebilecek temel ön bilgiye 5 dakikada ulaşmasını sağlar.
               </p>
 
               {/* Interactive Subject Card (Design 4 Element) */}

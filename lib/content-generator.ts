@@ -35,13 +35,15 @@ interface KnowledgeModule {
   }[];
 }
 
-// Resmî MEB Maarif Modeli Kazanımlarına Özel Pedagojik Konu ve Soru Kütüphanesi
+// 8. SINIF MEB YILLIK ÇERÇEVE PLANLARINA ÖZEL PEDAGOJİK BİLGİ BANKASI
 const CURRICULUM_KNOWLEDGE_BASE: Record<string, KnowledgeModule> = {
-  // İNK.8.1.2: Mustafa Kemal'in Çocukluk ve Öğrenim Hayatı
-  "İNK.8.1.2": {
+  // ==========================================
+  // T.C. İNKILAP TARİHİ VE ATATÜRKÇÜLÜK (8. SINIF)
+  // ==========================================
+  "İTA.8.1.2": {
     topicTitle: "Mustafa Kemal'in Çocukluk ve Öğrenim Hayatı",
     introduction:
-      "Merhaba! Yarınki dersimizde Türkiye Cumhuriyeti'nin kurucusu Mustafa Kemal Atatürk'ün çocukluk yıllarını, eğitim hayatını ve fikir dünyasının nasıl şekillendiğini inceleyeceğiz. Derste öğretmeninin anlatacaklarını rahatça takip edebilmek ve sorulara hazır olmak için bu 4 dakikalık hazırlık özetini dikkatle oku.",
+      "Merhaba! Yarınki dersimizde Türkiye Cumhuriyeti'nin kurucusu Mustafa Kemal Atatürk'ün çocukluk yıllarını, eğitim gördüğü okulları ve fikir dünyasının temellerini inceleyeceğiz. Derste öğretmeninin anlatacaklarını rahatça takip edebilmek ve sorulara hazır olmak için bu 4 dakikalık hazırlık özetini dikkatle oku.",
     summary:
       "Mustafa Kemal 1881 yılında Selanik'te doğdu. Selanik, zengin bir ticaret limanına, Avrupa ile bağlantılı demir yoluna ve farklı milletlerin bir arada yaşadığı kültürel zenginliğe sahipti. Bu çok uluslu ve hareketli ortam, Mustafa Kemal'in farklı kültürleri tanımasını ve dünyadaki gelişmelere açık bir lider olarak yetişmesini sağladı.\n\n" +
       "Mustafa Kemal öğrenim hayatına annesi Zübeyde Hanım'ın isteği üzerine geleneksel dini eğitim veren Mahalle Mektebi'nde başladı; kısa süre sonra babası Ali Rıza Efendi'nin isteğiyle çağdaş ve modern eğitim veren Şemsi Efendi Mektebi'ne geçti. Babasının vefatının ardından bir süre ara verse de Selanik Mülkiye Rüştiyesi'ne kaydoldu. Ancak gönlünde yatan askerlik mesleği için sınavlara gizlice girerek Selanik Askeri Rüştiyesi'ne başladı. Burada matematik öğretmeni Yüzbaşı Mustafa Bey, zekâsı ve olgunluğundan dolayı ona 'Kemal' adını verdi.\n\n" +
@@ -99,703 +101,856 @@ const CURRICULUM_KNOWLEDGE_BASE: Record<string, KnowledgeModule> = {
           "A) Manastır Askeri İdadisi",
           "B) Mahalle Mektebi",
           "C) Selanik Mülkiye Rüştiyesi",
-          "D) Şemsi Efendi Mektebi",
+          "D) Şam Askeri Kışlası",
         ]),
         correctAnswer: "A",
         explanation:
-          "Manastır Askeri İdadisi'nde okurken tarih öğretmeni Mehmet Tevfik Bey'den ve vatan şairlerinin eserlerinden derin biçimde etkilenmiştir.",
-        points: 20,
-      },
-      {
-        questionType: "TRUE_FALSE",
-        questionText:
-          "Mustafa Kemal'in doğup büyüdüğü Selanik şehri, farklı din ve milletten insanların bir arada yaşadığı, Batı'daki fikirlere açık çok uluslu bir liman kentiydi.",
-        optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
-        correctAnswer: "Doğru",
-        explanation:
-          "Selanik çok uluslu yapısı, zengin limanı ve demir yolu bağlantısıyla Batı'daki fikir akımlarının yoğun hissedildiği bir merkezdi.",
+          "Manastır Askeri İdadisi'nde arkadaşı Ömer Naci sayesinde edebiyata, tarih öğretmeni Mehmet Tevfik Bey sayesinde tarihe derin ilgi duymuştur.",
         points: 20,
       },
       {
         questionType: "FILL_BLANK",
         questionText:
-          "Mustafa Kemal eğitim hayatına annesi Zübeyde Hanım'ın isteği üzerine geleneksel eğitim veren _________ Mektebi'nde başlamıştır.",
+          "Mustafa Kemal'in annesi Zübeyde Hanım onun geleneksel eğitim veren _________ Mektebi'ne gitmesini istemiştir.",
         optionsJson: null,
-        correctAnswer: "mahalle",
+        correctAnswer: "Mahalle",
         explanation:
-          "Annesi Zübeyde Hanım geleneksel Mahalle Mektebi'ne gitmesini istemiş, babası ise modern Şemsi Efendi Mektebi'ni tercih etmiştir.",
+          "Annesi geleneksel Mahalle Mektebi'ni, babası ise modern eğitim veren Şemsi Efendi Mektebi'ni istemiştir.",
+        points: 20,
+      },
+      {
+        questionType: "TRUE_FALSE",
+        questionText:
+          "Mustafa Kemal İstanbul Harp Akademisi'nden 'Kurmay Yüzbaşı' rütbesiyle mezun olmuş ve ilk görev yeri Şam'daki 5. Ordu olmuştur.",
+        optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
+        correctAnswer: "Doğru",
+        explanation:
+          "Mustafa Kemal 1905 yılında kurmay yüzbaşı olarak mezun olmuş ve doğrudan Şam 5. Ordu emrine atanmıştır.",
         points: 20,
       },
       {
         questionType: "MATCHING",
-        questionText:
-          "Mustafa Kemal'in gittiği okulları özellikleri ile doğru şekilde eşleştiriniz:",
+        questionText: "Mustafa Kemal'in okullarını ve bu okullardaki önemli gelişmeleri eşleştiriniz:",
         optionsJson: JSON.stringify([
-          { left: "Şemsi Efendi Mektebi", right: "Modern yöntemlerle ilk eğitim" },
-          { left: "Selanik Askeri Rüştiyesi", right: "Kemal adını aldığı ortaokul" },
-          { left: "Harp Akademisi", right: "Kurmay Yüzbaşı olarak mezun olduğu okul" },
+          { left: "Şemsi Efendi Mektebi", right: "İlk modern ve yenilikçi eğitim kurumu" },
+          { left: "Selanik Askeri Rüştiyesi", right: "'Kemal' adının verilmesi" },
+          { left: "Harp Akademisi", right: "Kurmay Yüzbaşı olarak mezuniyet" },
         ]),
         correctAnswer: JSON.stringify({
-          "Şemsi Efendi Mektebi": "Modern yöntemlerle ilk eğitim",
-          "Selanik Askeri Rüştiyesi": "Kemal adını aldığı ortaokul",
-          "Harp Akademisi": "Kurmay Yüzbaşı olarak mezun olduğu okul",
+          "Şemsi Efendi Mektebi": "İlk modern ve yenilikçi eğitim kurumu",
+          "Selanik Askeri Rüştiyesi": "'Kemal' adının verilmesi",
+          "Harp Akademisi": "Kurmay Yüzbaşı olarak mezuniyet",
         }),
         explanation:
-          "Okullar Mustafa Kemal'in eğitim serüveninde belirleyici kilometre taşlarıdır.",
+          "Şemsi Efendi modern eğitime ilk adım, Selanik Askeri Rüştiyesi Kemal adını alış, Harp Akademisi kurmay yüzbaşılık rütbesidir.",
         points: 20,
       },
     ],
   },
 
-  // İNK.8.1.1: 20. Yüzyıl Başlarında Osmanlı Devleti
-  "İNK.8.1.1": {
+  // İTA.8.1.1: 20. Yüzyıl Başlarında Osmanlı Devleti
+  "İTA.8.1.1": {
     topicTitle: "20. Yüzyıl Başlarında Osmanlı Devleti",
     introduction:
-      "Yarınki dersimizde Osmanlı Devleti'nin 20. yüzyılın başlarındaki askeri ve siyasi durumunu, Trablusgarp ve Balkan Savaşları'nı inceleyeceğiz. Derste öğretmeni takip edebilmek için bu özeti dikkatle oku.",
+      "Merhaba! 8. Sınıf İnkılap Tarihi dersimizin ilk konusunda, Osmanlı Devleti'nin 20. yüzyılın başlarındaki siyasi, askeri ve sosyal yapısını etkileyen iki devasa olayı inceleyeceğiz: Sanayi İnkılabı ve Fransız İhtilali.",
     summary:
-      "20. yüzyılın başlarında Osmanlı Devleti dağılma tehlikesiyle karşı karşıyaydı. Sanayi İnkılabı ile hammadde ve pazar arayışına giren sömürgeci İtalya, Osmanlı'nın Kuzey Afrika'daki son toprak parçası olan Trablusgarp'a saldırdı. Osmanlı Devleti donanması yetersiz olduğu ve karadan kara yolu bağlantısı bulunmadığı için bölgeye ordu gönderemedi.\n\n" +
-      "Bunun üzerine Mustafa Kemal, Enver Paşa gibi fedakâr genç subaylar kılık değiştirerek gizlice Trablusgarp'a gittiler. Mustafa Kemal Derne ve Tobruk'ta yerel halkı teşkilatlandırarak İtalyanlara karşı büyük başarılar kazandı. Bu savaş Mustafa Kemal'in ilk askeri başarısı ve sömürgeciliğe karşı ilk mücadelesidir.\n\n" +
-      "Trablusgarp Savaşı devam ederken Balkan devletleri (Yunanistan, Bulgaristan, Sırbistan, Karadağ) Osmanlı'ya savaş açtı (I. Balkan Savaşı). Osmanlı iki ateş arasında kalarak Uşi Antlaşması ile Trablusgarp'ı İtalya'ya bırakmak zorunda kaldı. Balkan Savaşları sonucunda ise Edirne dahil Rumeli toprakları kaybedildi; ancak II. Balkan Savaşı'nda Edirne geri alındı.",
+      "Avrupa'da Sanayi İnkılabı ile birlikte hammadde ve pazar arayışı hızlandı; bu durum sömürgecilik yarışını doğurdu. Avrupalı devletler Osmanlı Devleti'ni açık bir pazar olarak gördüler ve kapitülasyonlar nedeniyle Osmanlı yerli üretimi çöktü. Düyun-ı Umumiye İdaresi kurularak Osmanlı'nın gelir kaynaklarına el konuldu.\n\n" +
+      "Diğer yandan 1789 Fransız İhtilali ile yayılan milliyetçilik akımı, çok uluslu bir imparatorluk olan Osmanlı'da yaşayan azınlıkların (Sırplar, Yunanlar, Bulgarlar) isyan etmesine yol açtı. Osmanlı aydınları ve devlet adamları devleti parçalanmaktan kurtarmak için Tanzimat Fermanı (1839), Islahat Fermanı (1856) ve I. ve II. Meşrutiyet'i ilan ettiler.\n\n" +
+      "Bu süreçte devleti kurtarmak için 4 temel fikir akımı ortaya çıktı: Osmanlıcılık, İslamcılık, Türkçülük ve Batıcılık.",
     keyConcepts: [
       {
-        term: "Trablusgarp Savaşı",
-        desc: "İtalya'nın sömürge arayışı sonucu başlayan, Osmanlı'nın Kuzey Afrika'daki son toprağını kaybettiği savaştır.",
+        term: "Sanayi İnkılabı",
+        desc: "Üretimde makineleşme, hammadde ve pazar arayışını artırarak sömürgeciliğe yol açan ekonomik devrim.",
       },
       {
-        term: "Derne ve Tobruk",
-        desc: "Mustafa Kemal'in yerel halkı teşkilatlandırarak İtalyanlara karşı kazandığı ilk askeri zaferlerdir.",
+        term: "Milliyetçilik Akımı",
+        desc: "Fransız İhtilali ile yayılan ve her milletin kendi devletini kurma hakkını savunan akım.",
       },
       {
-        term: "Uşi Antlaşması",
-        desc: "Osmanlı'nın Trablusgarp'ı İtalya'ya bıraktığı ve Kuzey Afrika'dan tamamen çekildiği antlaşmadır.",
+        term: "Düyun-ı Umumiye",
+        desc: "Osmanlı Devleti'nin dış borçlarını tahsil etmek için Avrupalı alacaklılar tarafından kurulan Genel Borçlar İdaresi.",
       },
       {
-        term: "Balkan Savaşları",
-        desc: "Milliyetçilik akımı ve Rusya'nın kışkırtmasıyla Balkan devletlerinin Osmanlı'ya saldırdığı savaşlardır.",
+        term: "Osmanlıcılık",
+        desc: "Din, dil ve ırk farkı gözetmeksizin herkesi eşit birer Osmanlı vatandaşı sayarak devleti bir arada tutmayı amaçlayan akım.",
+      },
+      {
+        term: "Türkçülük",
+        desc: "Devletin kurtuluşunu Türk milletinin milli değerlerine ve birliğine dayandıran fikir akımı.",
       },
     ],
     example:
-      "Bir liderin elindeki az imkana rağmen halkı bir araya getirip dayanışma kurması gibi; Mustafa Kemal de Trablusgarp'ta kısıtlı imkanlarla yerel halkı örgütleyerek İtalyan ordusunu durdurmayı başarmıştır.",
+      "Çok dilli ve çok kültürlü büyük bir ailenin bireyleri dışarıdan gelen kışkırtmalarla 'ben kendi evimi kuracağım' diyerek ayrılmaya başlarsa o büyük ev zayıflar. Osmanlı'da yaşanan azınlık isyanları da tam olarak böyle gerçekleşmiştir.",
     mustKnow:
-      "1) Trablusgarp Savaşı Mustafa Kemal'in sömürgeciliğe karşı ilk askeri başarısıdır.\n" +
-      "2) Uşi Antlaşması ile Osmanlı Devleti Kuzey Afrika'daki son toprağını da kaybetmiştir.\n" +
-      "3) I. Balkan Savaşı yenilgisinden sonra II. Balkan Savaşı'nda Edirne Meriç Nehri sınır olacak şekilde kurtarılmıştır.",
+      "1) Sanayi İnkılabı Osmanlı ekonomisini hammadde kaynağı ve açık pazar haline getirmiştir.\n" +
+      "2) Fransız İhtilali'nin milliyetçilik fikri Osmanlı'daki azınlıkların isyan edip bağımsızlık kazanmasına neden olmuştur.\n" +
+      "3) Düyun-ı Umumiye Osmanlı Devleti'nin ekonomik bağımsızlığını kaybettiğinin en somut kanıtıdır.",
     questions: [
       {
         questionType: "MULTIPLE_CHOICE",
         questionText:
-          "Mustafa Kemal'in sömürgeci güçlere karşı ilk askeri başarısını kazandığı, Derne ve Tobruk'ta yerel halkı örgütlediği savaş hangisidir?",
+          "Osmanlı Devleti'nde yaşayan azınlıkların isyan ederek bağımsız devletler kurmak istemesinde hangi tarihi gelişme doğrudan etkili olmuştur?",
         optionsJson: JSON.stringify([
-          "A) Çanakkale Savaşı",
-          "B) Trablusgarp Savaşı",
-          "C) I. Balkan Savaşı",
-          "D) Sakarya Meydan Muharebesi",
-        ]),
-        correctAnswer: "B",
-        explanation:
-          "Mustafa Kemal gizlice Trablusgarp'a giderek Derne ve Tobruk'ta İtalyanlara karşı ilk zaferlerini kazanmıştır.",
-        points: 25,
-      },
-      {
-        questionType: "TRUE_FALSE",
-        questionText:
-          "Osmanlı Devleti, Trablusgarp Savaşı sonucunda imzaladığı Uşi Antlaşması ile Kuzey Afrika'daki son toprak parçasını da kaybetmiştir.",
-        optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
-        correctAnswer: "Doğru",
-        explanation:
-          "Uşi Antlaşması ile Trablusgarp İtalya'ya bırakılmış ve Osmanlı'nın Kuzey Afrika'daki varlığı sona ermiştir.",
-        points: 25,
-      },
-      {
-        questionType: "FILL_BLANK",
-        questionText:
-          "Osmanlı Devleti'nin Trablusgarp'ı İtalya'ya bıraktığı antlaşmanın adı _________ Antlaşması'dır.",
-        optionsJson: null,
-        correctAnswer: "uşi",
-        explanation:
-          "1912 yılında imzalanan Uşi Antlaşması ile Trablusgarp İtalyanlara bırakılmıştır.",
-        points: 25,
-      },
-      {
-        questionType: "MULTIPLE_CHOICE",
-        questionText:
-          "Mustafa Kemal'in Trablusgarp'ta dağınık yerel halkı İtalyanlara karşı teşkilatlandırması, onun hangi kişisel özelliğini en açık şekilde gösterir?",
-        optionsJson: JSON.stringify([
-          "A) Teşkilatçılık ve Liderlik",
-          "B) Yalnızca edebiyata ilgisi",
-          "C) Sanata düşkünlüğü",
-          "D) Sabırsızlığı",
+          "A) Fransız İhtilali'nin yaydığı Milliyetçilik akımı",
+          "B) Coğrafi Keşifler",
+          "C) Rönesans hareketleri",
+          "D) Reform hareketleri",
         ]),
         correctAnswer: "A",
         explanation:
-          "Halkı organize edip ortak savunma cephesi oluşturması Mustafa Kemal'in teşkilatçı ve liderlik vasfını kanıtlar.",
-        points: 25,
-      },
-    ],
-  },
-
-  // FEN.7.1.1: Hücrenin Temel Kısımları ve Organeller
-  "FEN.7.1.1": {
-    topicTitle: "Hücrenin Temel Kısımları ve Organeller",
-    introduction:
-      "Yarınki dersimizde canlılığın en küçük yapı birimi olan 'hücre' konusunu öğreneceğiz. Dersteki mikroskop çalışmalarını ve öğretmeninin anlatımını kolayca kavramak için bu temel bilgileri 3 dakikada oku.",
-    summary:
-      "Tüm canlılar bir veya daha fazla hücreden meydana gelir. Bir hücre temelde üç ana bölümden oluşur:\n\n" +
-      "1. Hücre Zarı: Hücreyi dış etkilerden koruyan, canlı, esnek ve 'seçici geçirgen' bir zardır. Her maddenin hücreye girmesine izin vermez; yararlı maddeleri içeri alır, atıkları dışarı atar.\n" +
-      "2. Çekirdek: Hücrenin yönetim ve kalıtım merkezidir. Hücrenin bölünmesini, büyümesini ve yaşamsal faaliyetlerini yönetir. İçerisinde canlıya ait tüm kalıtsal bilgiyi taşıyan DNA ve kromozomlar yer alır.\n" +
-      "3. Sitoplazma: Hücre zarı ile çekirdek arasını dolduran, yumurta akı kıvamındaki akışkan sıvıdır. İçerisinde yaşamsal faaliyetleri yürüten organeller (mitokondri, ribozom, koful, golgi, lizozom vb.) bulunur.",
-    keyConcepts: [
-      {
-        term: "Hücre Zarı",
-        desc: "Canlı, esnek ve seçici geçirgen koruyucu dış katmandır.",
-      },
-      {
-        term: "Çekirdek",
-        desc: "Hücrenin yönetim merkezidir; DNA ve genetik bilgiyi barındırır.",
-      },
-      {
-        term: "Sitoplazma",
-        desc: "Organellerin bulunduğu akışkan, yarı saydam sıvıdır.",
-      },
-      {
-        term: "Mitokondri",
-        desc: "Hücrenin enerji santralidir; besin ve oksijenden enerji (ATP) üretir.",
-      },
-      {
-        term: "Ribozom",
-        desc: "Tüm hücrelerde bulunan en küçük organeldir; protein sentezi yapar.",
-      },
-    ],
-    example:
-      "Hücreyi bir okula benzetebiliriz: Okulun güvenlik kapısı ve dış duvarları 'Hücre Zarı' gibidir (kimin girip çıkacağına karar verir). Okul müdürünün odası 'Çekirdek' gibidir (tüm okulu yönetir). Koridorlar ve sınıflardaki faaliyetler ise 'Sitoplazma' içindeki organellerin çalışmasına benzer.",
-    mustKnow:
-      "1) Hücre temel olarak zar, sitoplazma ve çekirdekten oluşur.\n" +
-      "2) Hücre zarı seçici geçirgendir; çekirdek ise hücreyi yönetir.\n" +
-      "3) Mitokondri enerji üretir, ribozom protein sentezler.",
-    questions: [
-      {
-        questionType: "MULTIPLE_CHOICE",
-        questionText:
-          "Hücrenin yaşamsal faaliyetlerini yöneten ve içerisinde kalıtsal bilgiyi (DNA) barındıran temel kısım hangisidir?",
-        optionsJson: JSON.stringify([
-          "A) Sitoplazma",
-          "B) Çekirdek",
-          "C) Ribozom",
-          "D) Hücre zarı",
-        ]),
-        correctAnswer: "B",
-        explanation:
-          "Çekirdek hücrenin kontrol ve yönetim merkezidir; kalıtım maddesi olan DNA çekirdekte bulunur.",
+          "Fransız İhtilali ile dünyaya yayılan 'her millete bir devlet' ilkesi (milliyetçilik), Osmanlı azınlıklarının isyan etmesine zemin hazırlamıştır.",
         points: 25,
       },
       {
         questionType: "TRUE_FALSE",
         questionText:
-          "Hücre zarı cansız, sert ve önüne gelen tüm maddeleri ayırt etmeksizin içeri geçiren bir yapıya sahiptir.",
+          "Düyun-ı Umumiye İdaresi, Osmanlı Devleti'nin dış borçlarını ödeyememesi üzerine alacaklı Avrupalı devletlerin Osmanlı maliyesine el koyduğu kurumdur.",
         optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
-        correctAnswer: "Yanlış",
+        correctAnswer: "Doğru",
         explanation:
-          "Hücre zarı canlı, esnek ve 'seçici geçirgen'dir; yalnızca gerekli maddelerin geçişine izin verir.",
+          "1881 yılında kurulan Düyun-ı Umumiye, Osmanlı'nın ekonomik bağımsızlığına vurulmuş ağır bir darbedir.",
         points: 25,
       },
       {
         questionType: "FILL_BLANK",
         questionText:
-          "Hücrede besin ve oksijeni kullanarak hücrenin ihtiyacı olan enerjiyi üreten organele _________ denir.",
+          "Din, dil, ırk ayrımı gözetmeksizin tüm tebaayı eşit kabul ederek devleti parçalanmaktan kurtarmayı hedefleyen fikir akımına _________ denir.",
         optionsJson: null,
-        correctAnswer: "mitokondri",
+        correctAnswer: "Osmanlıcılık",
         explanation:
-          "Mitokondri hücrenin enerji santrali olarak bilinir ve hücresel solunumla enerji üretir.",
+          "Osmanlıcılık, herkesi ortak bir Osmanlı kimliği altında birleştirmeyi amaçlamıştır.",
         points: 25,
       },
       {
         questionType: "MULTIPLE_CHOICE",
         questionText:
-          "Tüm canlı hücrelerde bulunan ve protein sentezinden sorumlu olan en küçük organel hangisidir?",
+          "Avrupalı devletlerin Sanayi İnkılabı sonucunda en çok ihtiyaç duyduğu iki temel unsur hangisidir?",
         optionsJson: JSON.stringify([
-          "A) Ribozom",
-          "B) Kloroplast",
-          "C) Sentrozom",
-          "D) Lizozom",
+          "A) Hammadde ve Pazar",
+          "B) Askeri ittifak ve din adamı",
+          "C) Matbaa ve kağıt",
+          "D) Tarım arazisi ve feodal beyler",
         ]),
         correctAnswer: "A",
         explanation:
-          "Ribozom zarsız bir organel olup tüm canlı hücrelerde protein sentezini gerçekleştirir.",
+          "Fabrikalarda üretimi sürdürmek için hammadde, üretilen malları satmak için ise pazar arayışı sömürgeciliği tetiklemiştir.",
         points: 25,
       },
     ],
   },
 
-  // FEN.7.1.2: Bitki ve Hayvan Hücresi Karşılaştırması
-  "FEN.7.1.2": {
-    topicTitle: "Bitki ve Hayvan Hücrelerinin Karşılaştırılması",
+  // ==========================================
+  // FEN BİLİMLERİ (8. SINIF)
+  // ==========================================
+  "F.8.1.1.1": {
+    topicTitle: "Mevsimlerin Oluşumu ve Dünya'nın Eksen Eğikliği",
     introduction:
-      "Yarınki dersimizde mikroskop altında bitki ve hayvan hücreleri arasındaki benzerlik ve farkları göreceğiz. Derse hazırlıklı olmak için bu 3 dakikalık karşılaştırma özetini oku.",
+      "Merhaba! 8. Sınıf Fen Bilimleri dersimizin ilk ünitesinde Dünya'nın uzaydaki hareketlerini ve mevsimlerin nasıl oluştuğunu inceleyeceğiz. Derse hazırlıklı gelerek Güneş ışınlarının geliş açısı ve birim yüzeye düşen enerji kavramlarını kolayca kavra!",
     summary:
-      "Bitki ve hayvan hücreleri temel kısımları (zar, sitoplazma, çekirdek) bakımından benzer olsa da bazı çok önemli yapısal farklara sahiptir:\n\n" +
-      "1. Şekil: Bitki hücreleri köşeli bir yapıya sahipken, hayvan hücreleri yuvarlak veya oval şekillidir.\n" +
-      "2. Hücre Duvarı (Çeperi): Bitki hücrelerinde zarın en dışında cansız, dayanıklı bir 'hücre duvarı' bulunur. Hayvan hücrelerinde hücre duvarı YOKTUR.\n" +
-      "3. Kloroplast: Bitki hücrelerinde yeşil renk veren ve fotosentez ile besin/oksijen üreten kloroplast organeli bulunur. Hayvan hücrelerinde kloroplast YOKTUR.\n" +
-      "4. Kofullar: Bitki hücrelerinde kofullar büyük ve az sayıdadır. Hayvan hücrelerinde ise küçük ve çok sayıdadır.\n" +
-      "5. Sentrozom: İlkel bitkiler hariç gelişmiş bitki hücrelerinde sentrozom bulunmaz; hayvan hücrelerinde hücre bölünmesinde görev alan sentrozom bulunur.",
+      "Mevsimlerin oluşmasının iki temel sebebi vardır:\n" +
+      "1) Dünya'nın dönme ekseninin 23° 27' (23 derece 27 dakika) eğik olması,\n" +
+      "2) Dünya'nın Güneş etrafında elips şeklindeki yörüngede dolanması.\n\n" +
+      "Çok Önemli Yanılgı: Dünya'nın Güneş'e olan uzaklığının mevsimlerin oluşumuyla hiçbir ilgisi yoktur! Nitekim Dünya'nın Güneş'e en yakın olduğu tarih 3 Ocak'tır fakat Kuzey Yarım Küre'de bu tarihte kış yaşanır.\n\n" +
+      "Güneş ışınları dik veya dike yakın (büyük) açıyla geldiğinde birim yüzeye düşen ışık enerjisi miktarı fazla olur ve o bölgede yaz mevsimi yaşanır. Işınlar eğik (küçük) açıyla geldiğinde ise enerji geniş alana dağılır, birim yüzeye düşen enerji azalır ve kış mevsimi yaşanır.\n\n" +
+      "21 Haziran: Kuzey Yarım Küre'de yaz başlangıcı (en uzun gündüz). 21 Aralık: Kuzey Yarım Küre'de kış başlangıcı (en uzun gece). 21 Mart ve 23 Eylül: Ekinoks (gece-gündüz eşitliği).",
     keyConcepts: [
       {
-        term: "Hücre Duvarı",
-        desc: "Sadece bitki hücrelerinde bulunan, selülozdan yapılmış sert ve koruyucu cansız katmandır.",
+        term: "Eksen Eğikliği (23° 27')",
+        desc: "Dünya'nın dönme ekseni ile dolanma düzlemi arasındaki 23 derece 27 dakikalık kalıcı açı.",
       },
       {
-        term: "Kloroplast",
-        desc: "Yalnızca bitki hücrelerinde bulunan, fotosentez ile besin üreten yeşil organeldir.",
+        term: "Geliş Açısı",
+        desc: "Güneş ışınlarının yeryüzüne düşme açısı. Açı büyüdükçe sıcaklık artar.",
       },
       {
-        term: "Koful Farkı",
-        desc: "Bitkide büyük ve az sayıda; hayvanda küçük ve çok sayıdadır.",
+        term: "Birim Yüzeye Düşen Enerji",
+        desc: "Dik açıyla gelen ışınların dar alanda yoğunlaştırdığı yüksek enerji miktarı.",
       },
       {
-        term: "Köşeli Şekil",
-        desc: "Hücre duvarı nedeniyle bitki hücresinin aldığı karakteristik köşeli yapıdır.",
+        term: "Ekinoks",
+        desc: "21 Mart ve 23 Eylül tarihlerinde tüm dünyada gece ve gündüz sürelerinin eşit (12 saat) olması durumu.",
+      },
+      {
+        term: "Gün Dönümü (Solstis)",
+        desc: "21 Haziran ve 21 Aralık tarihlerinde yaşanan en uzun gündüz veya en uzun gece dönüm noktaları.",
       },
     ],
     example:
-      "Bir bitki gövdesinin rüzgarda dimdik ayakta durabilmesi hücre duvarlarının sağladığı sertlik sayesindedir; hayvanların ise hareket edebilmesi hücrelerinin esnek ve duvarsız olmasından kaynaklanır.",
+      "El fenerini masaya tam dik tuttuğunda küçük bir daire çok parlak ve sıcacık olur. Feneri yana doğru eğdiğinde ise ışık masada çok geniş bir alana yayılır ama masadaki aydınlık ve ısı yoğunluğu seyrekleşir. Yaz ve kış farkı tam olarak budur!",
     mustKnow:
-      "1) Bitki hücresi köşelidir; hayvan hücresi yuvarlaktır.\n" +
-      "2) Hücre duvarı ve kloroplast SADECE bitki hücrelerinde bulunur.\n" +
-      "3) Bitki kofulu büyük ve az sayıda; hayvan kofulu küçük ve çok sayıdadır.",
+      "1) Mevsimlerin temel sebebi eksen eğikliği ve dolanma hareketidir.\n" +
+      "2) Güneş'e yakınlık ya da uzaklık mevsimleri oluşturmaz.\n" +
+      "3) Kuzey ve Güney Yarım Küre'de her zaman aynı anda birbirine zıt mevsimler yaşanır.",
     questions: [
       {
         questionType: "MULTIPLE_CHOICE",
-        questionText: "Aşağıdakilerden hangisi yalnızca bitki hücrelerinde bulunur, hayvan hücrelerinde bulunmaz?",
-        optionsJson: JSON.stringify(["A) Mitokondri", "B) Çekirdek", "C) Kloroplast", "D) Ribozom"]),
-        correctAnswer: "C",
-        explanation: "Kloroplast fotosentez yaptığı için yalnızca bitki hücrelerinde bulunur.",
-        points: 25,
-      },
-      {
-        questionType: "TRUE_FALSE",
-        questionText: "Bitki hücreleri sert hücre çeperi nedeniyle mikroskopta köşeli bir şekilde görünür.",
-        optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
-        correctAnswer: "Doğru",
-        explanation: "Hücre duvarı bitki hücresine sertlik ve köşeli şekil kazandırır.",
-        points: 25,
-      },
-      {
-        questionType: "FILL_BLANK",
-        questionText: "Hayvan hücrelerinde kofullar bitki hücrelerine göre küçük ve _________ sayıdadır.",
-        optionsJson: null,
-        correctAnswer: "çok",
-        explanation: "Hayvan hücresinde kofullar küçük ve çok sayıda, bitkide ise büyük ve az sayıdadır.",
-        points: 25,
-      },
-      {
-        questionType: "MULTIPLE_CHOICE",
-        questionText: "Hayvan hücresi mikroskopta incelendiğinde şekil olarak hangisine benzer?",
-        optionsJson: JSON.stringify(["A) Köşeli", "B) Yuvarlak / Oval", "C) Küp biçimli", "D) Piramit"]),
-        correctAnswer: "B",
-        explanation: "Hücre duvarı olmadığı için hayvan hücreleri yuvarlak veya oval esnek bir yapıya sahiptir.",
-        points: 25,
-      },
-    ],
-  },
-
-  // FEN.7.1.3: Mitoz Bölünme
-  "FEN.7.1.3": {
-    topicTitle: "Mitoz Bölünmenin Canlılar İçin Önemi",
-    introduction:
-      "Yarınki dersimizde vücudumuzun nasıl büyüdüğünü ve yaralarımızın nasıl iyileştiğini sağlayan 'mitoz bölünme' konusunu işleyeceğiz. Derse hazır gelmek için bu 3 dakikalık özeti oku.",
-    summary:
-      "Mitoz bölünme, tüm çok hücreli canlıların vücut hücrelerinde (deri, kemik, kas vb.) görülen bir hücre bölünmesi türüdür.\n\n" +
-      "Mitoz bölünmenin canlılar için üç temel amacı vardır:\n" +
-      "1. Çok hücrelilerde: Büyüme, gelişme ve yaralanan dokuların onarılması (örneğin düşüp kanayan dizimizin iyileşmesi).\n" +
-      "2. Bir hücrelilerde: Eşeysiz üremeyi (çoğalmayı) sağlar (örneğin amip ve bakterilerin bölünerek çoğalması).\n\n" +
-      "Mitoz bölünmenin en kritik özelliği: Bölünme sonucunda ana hücreden tamamen aynı kalıtsal bilgiye sahip 2 YENİ HÜCRE oluşur. Kromozom sayısı ASLA DEĞİŞMEZ (2n ise yavru hücreler de 2n kalır). Kalıtsal çeşitlilik oluşmaz, oluşan hücreler ana hücrenin birer kopyasıdır.",
-    keyConcepts: [
-      {
-        term: "Vücut Hücreleri",
-        desc: "Mitoz bölünmenin gerçekleştiği, 2n kromozomlu hücrelerdir.",
-      },
-      {
-        term: "Kromozom Sabitliği",
-        desc: "Mitoz bölünme sonucunda yavru hücrelerin kromozom sayısının ana hücreyle aynı kalmasıdır.",
-      },
-      {
-        term: "Onarım ve Yenilenme",
-        desc: "Yaraların kapanması ve yıpranan dokuların mitoz sayesinde tamir edilmesidir.",
-      },
-      {
-        term: "2 Yeni Hücre",
-        desc: "Bir ana hücrenin mitoz geçirmesiyle oluşan hücre sayısıdır.",
-      },
-    ],
-    example:
-      "Parmak ucunuz kesildiğinde birkaç gün içinde yeni deri hücrelerinin oluşarak kesilen yeri kapatması, deri hücrelerinizin hızla mitoz bölünme geçirmesi sayesindedir.",
-    mustKnow:
-      "1) Mitoz sonucu 2 yeni yavru hücre oluşur.\n" +
-      "2) Kromozom sayısı ve genetik yapı DEĞİŞMEZ.\n" +
-      "3) Çok hücrelilerde büyüme ve onarımı, bir hücrelilerde üremeyi sağlar.",
-    questions: [
-      {
-        questionType: "MULTIPLE_CHOICE",
-        questionText: "2n = 46 kromozomlu bir insan deri hücresi mitoz bölünme geçirdiğinde oluşan yavru hücrelerin kromozom sayısı kaç olur?",
-        optionsJson: JSON.stringify(["A) 23", "B) 46", "C) 92", "D) 12"]),
-        correctAnswer: "B",
-        explanation: "Mitoz bölünmede kromozom sayısı sabit kalır; bu nedenle yavru hücreler de 46 kromozomlu olur.",
-        points: 25,
-      },
-      {
-        questionType: "TRUE_FALSE",
-        questionText: "Mitoz bölünme sonucunda ana hücreden genetik olarak birbirinin tıpatıp aynısı olan 2 yeni hücre meydana gelir.",
-        optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
-        correctAnswer: "Doğru",
-        explanation: "Mitozda kalıtsal çeşitlilik oluşmaz; oluşan iki hücre ana hücre ile aynı genetik yapıya sahiptir.",
-        points: 25,
-      },
-      {
-        questionType: "FILL_BLANK",
-        questionText: "Mitoz bölünme bir ana hücreden _________ adet yeni yavru hücre oluşturur.",
-        optionsJson: null,
-        correctAnswer: "2",
-        explanation: "Mitoz bölünme sonucunda 2 adet yeni hücre oluşur.",
-        points: 25,
-      },
-      {
-        questionType: "MULTIPLE_CHOICE",
-        questionText: "Aşağıdakilerden hangisi çok hücreli canlılarda mitoz bölünmenin görevlerinden biridir?",
-        optionsJson: JSON.stringify(["A) Yaralanan dokuların onarılması ve büyüme", "B) Mayoz gibi sperm ve yumurta hücresi üretme", "C) Tür içi çeşitlilik sağlama", "D) Kromozom sayısını yarıya indirme"]),
+        questionText:
+          "Mevsimlerin oluşmasında belirleyici olan iki temel doğa olayı aşağıdakilerden hangisidir?",
+        optionsJson: JSON.stringify([
+          "A) Dünya'nın eksen eğikliği ve Güneş etrafında dolanması",
+          "B) Dünya'nın Güneş'e olan mesafesinin değişmesi",
+          "C) Ay'ın Dünya etrafında dolanması",
+          "D) Dünya'nın kendi etrafında dönmesi",
+        ]),
         correctAnswer: "A",
-        explanation: "Mitoz çok hücrelilerde büyüme, gelişme ve yaraların onarılmasını sağlar.",
-        points: 25,
-      },
-    ],
-  },
-
-  // FEN.7.3.1: Kütle ve Ağırlık Karşılaştırması
-  "FEN.7.3.1": {
-    topicTitle: "Kütle ve Ağırlık Arasındaki Temel Farklar",
-    introduction:
-      "Yarınki dersimizde günlük hayatta sıkça birbirine karıştırılan 'kütle' ile 'ağırlık' kavramlarının fiziksel farklarını öğreneceğiz. Derse hazır olmak için bu 3 dakikalık özeti oku.",
-    summary:
-      "Günlük dilde 'kütlem' ve 'ağırlığım' aynı şey gibi kullanılsa da fizikte iki tamamen farklı kavramdır:\n\n" +
-      "1. Kütle: Değişmeyen madde miktarıdır. Bir cismin kütlesi Dünya'da da, Ay'da da, uzay boşluğunda da AYNIDIR. Sembolü 'm'dir, birimi kilogram (kg) veya gramdır (g). Eşit kollu terazi ile ölçülür.\n\n" +
-      "2. Ağırlık: Bir cisme etki eden yerçekimi kuvvetidir. Ağırlık bir kuvvettir! Bu nedenle yerçekiminin değiştiği yerlerde ağırlık da DEĞİŞİR. Örneğin Ay'ın yerçekimi Dünya'nın yaklaşık 6'da 1'i olduğu için bir cisim Ay'da Dünya'dakinin 6'da 1'i kadar hafif tartar. Ağırlığın sembolü 'G'dir, birimi Newton'dur (N). Dinamometre ile ölçülür.",
-    keyConcepts: [
-      {
-        term: "Kütle (m)",
-        desc: "Madde miktarıdır; konuma göre değişmez; birimi kg'dır; eşit kollu teraziyle ölçülür.",
-      },
-      {
-        term: "Ağırlık (G)",
-        desc: "Yerçekimi kuvvetidir; konuma göre değişir; birimi Newton'dur (N); dinamometreyle ölçülür.",
-      },
-      {
-        term: "Dinamometre",
-        desc: "İçindeki yayın esnemesi prensibiyle ağırlık ve kuvveti ölçen alettir.",
-      },
-    ],
-    example:
-      "Kütlesi 60 kg olan bir astronot Ay'a gittiğinde kütlesi yine 60 kg kalır. Ancak Dünya'da yaklaşık 600 N olan ağırlığı, Ay'da yerçekimi az olduğu için sadece 100 N olarak ölçülür.",
-    mustKnow:
-      "1) Kütle hiçbir yerde DEĞİŞMEZ; birimi kg'dır, eşit kollu teraziyle ölçülür.\n" +
-      "2) Ağırlık yerçekimine göre DEĞİŞİR; bir kuvvettir, birimi Newton'dur (N), dinamometreyle ölçülür.",
-    questions: [
-      {
-        questionType: "MULTIPLE_CHOICE",
-        questionText: "Dünya'da kütlesi 30 kg olan bir taş Ay'a götürülürse kütlesi kaç kg olur?",
-        optionsJson: JSON.stringify(["A) 5 kg", "B) 30 kg", "C) 180 kg", "D) 0 kg"]),
-        correctAnswer: "B",
-        explanation: "Kütle değişmeyen madde miktarıdır; Dünya'da da Ay'da da aynı kalır (30 kg).",
-        points: 25,
-      },
-      {
-        questionType: "TRUE_FALSE",
-        questionText: "Ağırlık bir kuvvettir, dinamometre ile ölçülür ve birimi Newton'dur (N).",
-        optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
-        correctAnswer: "Doğru",
-        explanation: "Ağırlık cisme etki eden yerçekimi kuvvetidir; birimi N ve aleti dinamometredir.",
-        points: 25,
-      },
-      {
-        questionType: "FILL_BLANK",
-        questionText: "Kütle ölçümünde kullanılan geleneksel ölçüm aletine _________ kollu terazi denir.",
-        optionsJson: null,
-        correctAnswer: "eşit",
-        explanation: "Kütle eşit kollu terazi ile ölçülür.",
-        points: 25,
-      },
-      {
-        questionType: "MULTIPLE_CHOICE",
-        questionText: "Aşağıdakilerden hangisi cismin bulunduğu gezegene veya deniz seviyesinden yüksekliğine göre DEĞİŞİR?",
-        optionsJson: JSON.stringify(["A) Ağırlık", "B) Kütle", "C) Atom sayısı", "D) Madde miktarı"]),
-        correctAnswer: "A",
-        explanation: "Yerçekimi değiştikçe cisme etki eden ağırlık kuvveti de değişir.",
-        points: 25,
-      },
-    ],
-  },
-
-  // MAT.7.1.1: Rasyonel Sayılar
-  "MAT.7.1.1": {
-    topicTitle: "Rasyonel Sayıları Tanıma ve Sayı Doğrusunda Gösterme",
-    introduction:
-      "Yarınki matematik dersimizde tam sayıların ardından 'rasyonel sayılar' konusuna adım atacağız. Derste zorlanmamak için rasyonel sayıların ne anlama geldiğini 3 dakikada hatırla.",
-    summary:
-      "a ve b birer tam sayı olmak ve b sıfırdan farklı (b ≠ 0) olmak üzere a/b biçiminde yazılabilen tüm sayılara 'rasyonel sayı' denir. Rasyonel sayılar kümesi 'Q' sembolü ile gösterilir.\n\n" +
-      "Her tam sayı, paydasına 1 yazılabildiği için aynı zamanda bir rasyonel sayıdır. Örneğin 5 = 5/1, -3 = -3/1 rasyoneldir. Sıfır da bir rasyonel sayıdır (0/1 = 0).\n\n" +
-      "Ancak bir sayının paydasında sıfır bulunamaz! Örneğin 5/0 tanımsızdır ve rasyonel sayı değildir.\n\n" +
-      "Sayı doğrusunda pozitif rasyonel sayılar 0'ın sağında, negatif rasyonel sayılar ise 0'ın solunda yer alır. İki tam sayı arası, kesrin paydası kadar eşit parçaya bölünerek gösterilir.",
-    keyConcepts: [
-      {
-        term: "Rasyonel Sayı (Q)",
-        desc: "a ve b tam sayı, b ≠ 0 olmak üzere a/b şeklinde yazılabilen sayılardır.",
-      },
-      {
-        term: "Pay ve Payda",
-        desc: "Üstteki sayı (pay) alınan parça sayısını, alttaki sayı (payda) bütünün kaç parçaya bölündüğünü belirtir.",
-      },
-      {
-        term: "Tanımsızlık",
-        desc: "Paydası sıfır olan (a/0) kesirler matematiksel olarak tanımsızdır.",
-      },
-      {
-        term: "Negatif Rasyonel Sayılar",
-        desc: "Sayı doğrusunda sıfırın solunda kalan, önünde eksi işareti bulunan sayılardır (-3/4 gibi).",
-      },
-    ],
-    example:
-      "Bir pizzayı 4 eşit dilime bölüp 3 dilimini yerseniz 3/4 rasyonel sayısını ifade etmiş olursunuz. Borcunuz 2 lira ise ve bunu 3 kişiye paylaştırırsanız -2/3 negatif rasyonel sayısı oluşur.",
-    mustKnow:
-      "1) Payda asla sıfır olamaz (b ≠ 0). 7/0 tanımsızdır.\n" +
-      "2) Tüm tam sayılar birer rasyonel sayıdır (paydası 1'dir).\n" +
-      "3) Negatif rasyonel sayılarda eksi işareti paya, paydaya veya kesir çizgisinin önüne konabilir: -a/b = (-a)/b = a/(-b).",
-    questions: [
-      {
-        questionType: "MULTIPLE_CHOICE",
-        questionText: "Aşağıdaki ifadelerden hangisi bir rasyonel sayı BELİRTMEZ (tanımsızdır)?",
-        optionsJson: JSON.stringify(["A) 0 / 5", "B) -3 / 4", "C) 7 / 0", "D) 8 / 1"]),
-        correctAnswer: "C",
         explanation:
-          "Paydası sıfır olan ifadeler (7/0) matematikte tanımsızdır ve rasyonel sayı oluşturmaz.",
-        points: 25,
+          "Mevsimler 23° 27'lik eksen eğikliği ve Güneş çevresindeki yıllık dolanma hareketi ile oluşur.",
+        points: 20,
       },
       {
         questionType: "TRUE_FALSE",
-        questionText: "Bütün tam sayılar paydalarına 1 yazılabildiği için aynı zamanda birer rasyonel sayıdır.",
+        questionText:
+          "Dünya'nın Güneş'e en yakın olduğu tarih 3 Ocak civarıdır; bu durum mevsimlerin Güneş'e olan uzaklıkla bir ilgisi olmadığını kanıtlar.",
         optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
         correctAnswer: "Doğru",
         explanation:
-          "Örneğin -4 = -4/1 veya 9 = 9/1 şeklinde yazılabildiğinden her tam sayı rasyonel sayıdır.",
+          "En yakın olunan Ocak ayında Kuzey Yarım Küre'de kış yaşanması mesafenin mevsim belirlemediğini gösterir.",
+        points: 20,
+      },
+      {
+        questionType: "FILL_BLANK",
+        questionText:
+          "Güneş ışınlarının yeryüzüne dik açıyla düştüğü bölgelerde birim yüzeye aktarılan ısı enerjisi miktarı _________ olur.",
+        optionsJson: null,
+        correctAnswer: "fazla",
+        explanation:
+          "Dik gelen ışınlar enerjiyi dar alanda topladığı için birim yüzey enerjisi fazla olur.",
+        points: 20,
+      },
+      {
+        questionType: "MULTIPLE_CHOICE",
+        questionText:
+          "Kuzey Yarım Küre'de en uzun gündüzün yaşandığı ve yaz mevsiminin başladığı gün dönümü tarihi hangisidir?",
+        optionsJson: JSON.stringify([
+          "A) 21 Haziran",
+          "B) 21 Aralık",
+          "C) 21 Mart",
+          "D) 23 Eylül",
+        ]),
+        correctAnswer: "A",
+        explanation: "21 Haziran Kuzey Yarım Küre için yaz gündönümüdür.",
+        points: 20,
+      },
+      {
+        questionType: "MATCHING",
+        questionText: "Önemli mevsim tarihlerini özellikleriyle eşleştiriniz:",
+        optionsJson: JSON.stringify([
+          { left: "21 Haziran", right: "Kuzey Yarım Küre'de en uzun gündüz" },
+          { left: "21 Aralık", right: "Kuzey Yarım Küre'de en uzun gece" },
+          { left: "21 Mart / 23 Eylül", right: "Ekinoks (Gece-gündüz eşitliği)" },
+        ]),
+        correctAnswer: JSON.stringify({
+          "21 Haziran": "Kuzey Yarım Küre'de en uzun gündüz",
+          "21 Aralık": "Kuzey Yarım Küre'de en uzun gece",
+          "21 Mart / 23 Eylül": "Ekinoks (Gece-gündüz eşitliği)",
+        }),
+        explanation:
+          "21 Haziran yaz, 21 Aralık kış başlangıcı, 21 Mart ve 23 Eylül gece-gündüz eşitliğidir.",
+        points: 20,
+      },
+    ],
+  },
+
+  // F.8.2.1.1: DNA ve Genetik Kod
+  "F.8.2.1.1": {
+    topicTitle: "DNA ve Genetik Kod Kavramları",
+    introduction:
+      "Merhaba! 8. Sınıf LGS hazırlığının en önemli biyoloji konularından biri olan kalıtım ve genetik koda adım atıyoruz. Kromozom, DNA, gen ve nükleotid kavramları arasındaki hiyerarşik ilişkiyi dersten önce öğren!",
+    summary:
+      "Hücrenin yönetim ve kalıtım merkezi çekirdektir. Çekirdek içindeki kalıtsal yapılar karmaşıktan basite (büyükten küçüğe) şu şekilde sıralanır (Şifre: KEDİGENİ):\n\n" +
+      "Kromozom > DNA > Gen > Nükleotid\n\n" +
+      "1) Kromozom: DNA'nın özel protein kılıfla sarılmış en karmaşık paket halidir. İnsan vücut hücresinde 46 kromozom bulunur (Kromozom sayısının canlının gelişmişliği ile ilgisi yoktur; moli balığı da 46 kromozomludur).\n" +
+      "2) DNA: Çift zincirli ve sarmal yapıda olan yönetici moleküldür.\n" +
+      "3) Gen: DNA'nın görev birimidir. Göz rengi, saç şekli gibi kalıtsal özellikleri belirler.\n" +
+      "4) Nükleotid: DNA'nın en küçük yapı birimidir. Bir nükleotidin yapısında 1 Fosfat + 1 Deoksiriboz Şekeri + 1 Organik Baz bulunur. Nükleotitler taşıdıkları organik baza göre adlandırılır (Adenin, Timin, Guanin, Sitozin). DNA sarmalında her zaman Adenin karşısına Timin (A=T), Guanin karşısına Sitozin (G≡C) gelir.",
+    keyConcepts: [
+      {
+        term: "Kromozom",
+        desc: "DNA'nın özel proteinlerle birleşerek oluşturduğu en büyük ve en karmaşık kalıtsal yapıdır.",
+      },
+      {
+        term: "DNA",
+        desc: "Çift zincirli sarmal yapıdaki yönetici moleküldür.",
+      },
+      {
+        term: "Gen",
+        desc: "DNA üzerindeki belirli özellikleri şifreleyen anlamlı görev birimidir.",
+      },
+      {
+        term: "Nükleotid",
+        desc: "DNA'nın en küçük yapı birimidir. Fosfat, şeker ve organik bazdan oluşur.",
+      },
+    ],
+    example:
+      "Bir ansiklopediyi düşünelim: Ansiklopedi kütüphanesi = Kromozom, Cildin tamamı = DNA, Cilt içindeki bir konu fasikülü = Gen, Fasiküldeki her bir harf = Nükleotid'dir.",
+    mustKnow:
+      "1) Sıralama büyükten küçüğe: Kromozom > DNA > Gen > Nükleotid (KEDİGENİ).\n" +
+      "2) DNA'nın görev birimi Gen, yapı birimi Nükleotid'dir.\n" +
+      "3) Nükleotidler içerdikleri organik baza göre isimlendirilir.\n" +
+      "4) Adenin daima Timin ile, Guanin daima Sitozin ile eşleşir.",
+    questions: [
+      {
+        questionType: "MULTIPLE_CHOICE",
+        questionText:
+          "Kalıtsal yapıların karmaşıktan basite (büyükten küçüğe) doğru sıralanışı hangisinde doğru verilmiştir?",
+        optionsJson: JSON.stringify([
+          "A) Kromozom > DNA > Gen > Nükleotid",
+          "B) Nükleotid > Gen > DNA > Kromozom",
+          "C) DNA > Kromozom > Nükleotid > Gen",
+          "D) Gen > Nükleotid > DNA > Kromozom",
+        ]),
+        correctAnswer: "A",
+        explanation:
+          "KEDİGENİ kodlaması: Kromozom > DNA > Gen > Nükleotid şeklindedir.",
+        points: 25,
+      },
+      {
+        questionType: "TRUE_FALSE",
+        questionText:
+          "DNA'nın 'görev birimi' gen iken, 'yapı birimi' nükleotiddir.",
+        optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
+        correctAnswer: "Doğru",
+        explanation:
+          "Evet, genler görevleri şifreler, nükleotidler ise DNA'yı inşa eden yapı taşlarıdır.",
         points: 25,
       },
       {
         questionType: "FILL_BLANK",
-        questionText: "Rasyonel sayılar kümesi matematikte büyük _________ harfi ile sembolize edilir.",
+        questionText:
+          "Bir nükleotidin yapısında fosfat ve deoksiriboz şekerine ek olarak bir adet organik _________ bulunur.",
         optionsJson: null,
-        correctAnswer: "q",
-        explanation: "Rasyonel sayılar kümesi 'Q' harfi ile gösterilir (İtalyanca quoziente - bölüm).",
+        correctAnswer: "baz",
+        explanation:
+          "Nükleotid yapısı: Fosfat + Deoksiriboz Şekeri + Organik Baz.",
         points: 25,
       },
       {
         questionType: "MULTIPLE_CHOICE",
-        questionText: "-2 tam sayısının rasyonel sayı olarak gösterimi aşağıdakilerden hangisidir?",
-        optionsJson: JSON.stringify(["A) -2 / 1", "B) 1 / -2", "C) 0 / -2", "D) -2 / 0"]),
+        questionText:
+          "Sağlıklı bir DNA molekülünde Adenin nükleotidinin karşısına daima hangi nükleotid gelir?",
+        optionsJson: JSON.stringify([
+          "A) Timin",
+          "B) Guanin",
+          "C) Sitozin",
+          "D) Urasil",
+        ]),
         correctAnswer: "A",
-        explanation: "Her tam sayının paydasında gizli bir 1 vardır: -2 = -2/1.",
+        explanation: "DNA çift zincirinde A daima T ile, G daima C ile eşleşir.",
         points: 25,
       },
     ],
   },
 
-  // MAT.8.1.1: Çarpanlar ve Asal Çarpanlar
-  "MAT.8.1.1": {
-    topicTitle: "Pozitif Tam Sayıların Çarpanları ve Asal Sayılar",
+  // ==========================================
+  // MATEMATİK (8. SINIF)
+  // ==========================================
+  "M.8.1.1.1": {
+    topicTitle: "Çarpanlar ve Katlar / Asal Çarpanlar",
     introduction:
-      "LGS ve 8. sınıf matematiğinin ilk konusu olan 'Çarpanlar ve Katlar' konusuna yarın başlıyoruz. Derste zorlanmamak için pozitif tam sayıların çarpanlarını bulma mantığını 3 dakikada hatırla.",
+      "Merhaba! 8. Sınıf LGS Matematik maratonunun başlangıç konusu olan 'Çarpanlar ve Katlar' ile derse hazırlanıyoruz. Pozitif tam sayıların çarpanlarını bulma ve asal çarpanlarına ayırma mantığını sınıfa girmeden önce kavra!",
     summary:
-      "Her pozitif tam sayı, iki pozitif tam sayının çarpımı şeklinde yazılabilir. Bu sayılara o sayının 'çarpanları' veya 'bölenleri' denir. Yani çarpan ile bölen aynı şeydir.\n\n" +
-      "Örneğin 18 sayısının çarpanları: 1 x 18, 2 x 9, 3 x 6 olduğundan 1, 2, 3, 6, 9, 18'dir.\n\n" +
-      "Asal Sayı: Yalnızca 1'e ve kendisine bölünebilen 1'den büyük doğal sayılardır. 2, 3, 5, 7, 11, 13, 17, 19... şeklinde devam eder. Unutma: En küçük asal sayı 2'dir ve 2 ÇİFT OLAN TEK ASAL SAYIDIR! 1 asal sayı DEĞİLDİR.\n\n" +
-      "Bir sayının asal olan çarpanlarına 'asal çarpan' denir. Örneğin 18'in çarpanları içinden asal olanlar 2 ve 3'tür.",
+      "Her pozitif tam sayı iki pozitif tam sayının çarpımı şeklinde yazılabilir. Bu sayılara o sayının çarpanları (bölenleri) denir. Bir sayının çarpanı aynı zamanda o sayının tam bölenidir.\n\n" +
+      "Asal Sayılar: 1 ve kendisinden başka hiçbir pozitif tam sayıya bölünemeyen 1'den büyük doğal sayılardır (2, 3, 5, 7, 11, 13, 17, 19...).\n" +
+      "- En küçük asal sayı 2'dir.\n" +
+      "- 2'den başka çift asal sayı yoktur.\n\n" +
+      "Asal Çarpanlara Ayırma İki Yöntemle Yapılır:\n" +
+      "1) Bölen Listesi (Asal Çarpan Algoritması): Sayı en küçük asal sayıdan başlanarak 1 elde edilene kadar bölünür.\n" +
+      "2) Çarpan Ağacı Yöntemi: Sayı dallara ayrılarak en alt dallarda sadece asal sayılar kalana kadar çarpanlara ayrılır.\n\n" +
+      "Örnek: 24 sayısı = 2 x 2 x 2 x 3 = 2³ x 3¹ şeklinde üslü ifadelerin çarpımı olarak gösterilir. 24'ün asal çarpanları 2 ve 3'tür.",
     keyConcepts: [
       {
         term: "Çarpan (Bölen)",
-        desc: "Bir sayıyı kalansız bölen pozitif tam sayılardır.",
+        desc: "Bir sayıyı kalansız olarak bölebilen pozitif tam sayıların her biri.",
       },
       {
         term: "Asal Sayı",
-        desc: "1 ve kendisinden başka böleni olmayan 1'den büyük doğal sayılardır.",
-      },
-      {
-        term: "2 Sayısı",
-        desc: "En küçük asal sayıdır ve tek çift asal sayıdır.",
+        desc: "Sadece 1'e ve kendisine bölünebilen 1'den büyük doğal sayılar (2, 3, 5, 7...).",
       },
       {
         term: "Bölen Listesi",
-        desc: "Bir sayıyı sağ tarafına dikey çizgi çekerek en küçük asal sayıdan başlayıp bölme yöntemidir.",
+        desc: "Sayının yanına dikey çizgi çekilerek sırasıyla asal sayılara bölündüğü algoritma.",
+      },
+      {
+        term: "Üslü Gösterim",
+        desc: "Asal çarpanların kaç kez tekrarlandığını üs olarak yazma biçimi (ör: 72 = 2³ . 3²).",
       },
     ],
     example:
-      "12 sayısının çarpanları: 1, 2, 3, 4, 6, 12'dir. Bunlar arasından asal olanlar 2 ve 3'tür. 12 = 2² x 3 şeklinde asal çarpanlarının çarpımı olarak yazılır.",
+      "36 sayısının çarpanlarını bulalım: 1x36, 2x18, 3x12, 4x9, 6x6. Çarpanları: 1, 2, 3, 4, 6, 9, 12, 18, 36 (9 adet). Bunlardan asal olanları ise yalnızca 2 ve 3'tür. 36 = 2² . 3² olarak yazılır.",
     mustKnow:
       "1) 1 asal sayı DEĞİLDİR.\n" +
-      "2) 2 en küçük ve tek çift asal sayıdır.\n" +
-      "3) 'Çarpan' ile 'bölen' aynı anlama gelir.",
+      "2) En küçük asal sayı ve tek çift asal sayı 2'dir.\n" +
+      "3) Bir sayının pozitif çarpanları ile pozitif bölenleri aynı anlama gelir.\n" +
+      "4) Asal çarpanlar üslü ifadelerin çarpımı şeklinde gösterilebilir.",
     questions: [
       {
         questionType: "MULTIPLE_CHOICE",
-        questionText: "Aşağıdaki sayılardan hangisi 24 sayısının bir çarpanı (böleni) DEĞİLDİR?",
-        optionsJson: JSON.stringify(["A) 4", "B) 6", "C) 7", "D) 8"]),
+        questionText:
+          "Aşağıdaki sayılardan hangisi hem bir çift sayı hem de bir asal sayıdır?",
+        optionsJson: JSON.stringify(["A) 0", "B) 1", "C) 2", "D) 4"]),
         correctAnswer: "C",
-        explanation: "24 sayısı 7'ye kalansız bölünmez (24 / 7 = 3 kalan 3). Bu nedenle 7 çarpan değildir.",
+        explanation: "2 sayısı matematikteki tek çift asal sayıdır.",
+        points: 25,
+      },
+      {
+        questionType: "MULTIPLE_CHOICE",
+        questionText:
+          "60 sayısının asal çarpanlarına ayrılmış üslü gösterimi aşağıdakilerden hangisidir?",
+        optionsJson: JSON.stringify([
+          "A) 2² × 3 × 5",
+          "B) 2 × 3² × 5",
+          "C) 4 × 15",
+          "D) 2³ × 5",
+        ]),
+        correctAnswer: "A",
+        explanation: "60 = 4 × 3 × 5 = 2² × 3 × 5'tir.",
         points: 25,
       },
       {
         questionType: "TRUE_FALSE",
-        questionText: "2 sayısı en küçük asal sayıdır ve aynı zamanda çift olan tek asal sayıdır.",
+        questionText:
+          "1 sayısı tüm doğal sayıların bölenidir ve aynı zamanda en küçük asal sayıdır.",
         optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
-        correctAnswer: "Doğru",
-        explanation: "2 hariç tüm çift sayılar 2'ye bölünebildiği için asal olamaz; tek çift asal 2'dir.",
+        correctAnswer: "Yanlış",
+        explanation:
+          "1 sayısı tüm sayıların bölenidir ancak asal sayı DEĞİLDİR. En küçük asal sayı 2'dir.",
         points: 25,
       },
       {
         questionType: "FILL_BLANK",
-        questionText: "1 ve kendisinden başka hiçbir pozitif böleni olmayan 1'den büyük doğal sayılara _________ sayı denir.",
+        questionText:
+          "36 sayısının asal olan çarpanları 2 ve _________ sayılarıdır.",
         optionsJson: null,
-        correctAnswer: "asal",
-        explanation: "Yalnızca 1'e ve kendisine bölünen sayılara asal sayı denir.",
-        points: 25,
-      },
-      {
-        questionType: "MULTIPLE_CHOICE",
-        questionText: "30 sayısının asal çarpanları aşağıdakilerin hangisinde doğru verilmiştir?",
-        optionsJson: JSON.stringify(["A) 2, 3 ve 5", "B) 1, 2 ve 3", "C) 3 ve 10", "D) 5 ve 6"]),
-        correctAnswer: "A",
-        explanation: "30 = 2 x 3 x 5 olduğundan asal çarpanları 2, 3 ve 5'tir.",
+        correctAnswer: "3",
+        explanation: "36 = 2² × 3² olduğundan asal çarpanları sadece 2 ve 3'tür.",
         points: 25,
       },
     ],
   },
 
-  // TÜRK.7.2.1: Fiillerde Anlam (İş, Oluş, Durum)
-  "TÜRK.7.2.1": {
-    topicTitle: "Fiillerde Anlam Özellikleri: İş, Oluş ve Durum Fiilleri",
+  // M.8.1.2.1: Üslü İfadeler
+  "M.8.1.2.1": {
+    topicTitle: "Üslü İfadeler ve Negatif Kuvvet",
     introduction:
-      "Yarınki Türkçe dersimizde fiillerin anlamına göre ayrımını (iş, oluş, durum) öğreneceğiz. Derste soruları anında cevaplayabilmek için bu 3 dakikalık pratik yöntemi oku.",
+      "Merhaba! 8. Sınıf Matematik dersinde üslü ifadelerin en kritik aşaması olan 'negatif üs' ve kuvvet kurallarını inceleyeceğiz. Derste işlem hatası yapmamak için bu temel kuralları şimdi öğren!",
     summary:
-      "Fiiller (eylemler) anlamına göre üçe ayrılır:\n\n" +
-      "1. İş (Kılış) Fiilleri: Bir öznenin kendi isteğiyle yaptığı ve nesneyi etkilediği eylemlerdir. En pratik kural: Başına 'onu' sözcüğü getirildiğinde anlamlı olur! (Onu yazdı, onu kırdı, onu çözdü, onu taşıdı).\n\n" +
-      "2. Durum Fiilleri: Öznenin içinde bulunduğu hali, durumu anlatır. Nesne almazlar; başına 'onu' getirildiğinde anlamsız olur! Ancak öznenin iradesiyle gerçekleşir. (Uyumak, oturmak, gülmek, gitmek -> 'Onu uyudu' DENMEZ!).\n\n" +
-      "3. Oluş Fiilleri: Öznenin kendi isteği ve iradesi dışında, zaman içinde kendiliğinden gerçekleşen fiziksel ve biyolojik değişimlerdir. (Sararmak, paslanmak, büyümek, küflenmek, bayatlamak, uzamak).",
+      "Bir sayının kendisiyle tekrarlı çarpımı üslü ifadeyle gösterilir: a^n.\n\n" +
+      "Negatif Üs Kuralı: Bir sayının negatif kuvveti, o sayının çarpma işlemine göre tersinin pozitif kuvvetidir. Negatif üs sayıyı eksi yapmaz; sadece paydaya atar (takla attırır)!\n" +
+      "a^(-n) = 1 / a^n\n" +
+      "Örnek: 2^(-3) = 1 / 2³ = 1/8'dir.\n" +
+      "(2/3)^(-2) = (3/2)² = 9/4'tür.\n\n" +
+      "Önemli Kurallar:\n" +
+      "1) Sıfır hariç her sayının 0. kuvveti 1'dir: a⁰ = 1.\n" +
+      "2) 1'in her kuvveti 1'dir.\n" +
+      "3) Negatif sayıların parantezli çift kuvveti pozitif, tek kuvveti negatiftir: (-2)² = +4 ama -2² = -4'tür!",
     keyConcepts: [
       {
-        term: "İş (Kılış) Fiili",
-        desc: "Nesne alan fiildir; başına 'onu' gelir (yazmak, sevmek, okumak).",
+        term: "Negatif Üs",
+        desc: "a^(-n) = 1 / a^n kuralıyla sayının ters çevrilmesini (pay ve payda yer değiştirmesini) sağlayan kuvvet.",
       },
       {
-        term: "Durum Fiili",
-        desc: "Öznenin durumunu belirtir, nesne almaz; başına 'onu' gelmez (durmak, uyumak, ağlamak).",
+        term: "Sıfırıncı Kuvvet",
+        desc: "Sıfır hariç tüm sayıların sıfırıncı kuvvetinin 1 olması kuralı (5⁰ = 1).",
       },
       {
-        term: "Oluş Fiili",
-        desc: "Zamanla kendiliğinden olan değişimlerdir; irade dışıdır (paslanmak, sararmak, yaşlanmak).",
+        term: "Parantez Farkı",
+        desc: "(-3)² = +9 iken, parantezsiz -3² = -9 olması durumu.",
       },
     ],
     example:
-      "Demirin zamanla paslanması bir 'oluş' fiilidir (kendiliğinden olur). Çocuğun koltukta uyuması bir 'durum' fiilidir (onu uyudu denmez). Kitabı masaya bırakmak ise bir 'iş' fiilidir (onu bıraktı denir).",
+      "5^(-2) işlemini yaparken sakın -10 veya -25 deme! Üsteki eksi işareti sayıyı ters çevirir: 1 / 5² = 1 / 25 olur.",
     mustKnow:
-      "1) Başına 'onu' geliyorsa -> İŞ fiili.\n" +
-      "2) Başına 'onu' gelmiyor ve özne yapıyorsa -> DURUM fiili.\n" +
-      "3) Zamanla kendiliğinden değişiyorsa -> OLUŞ fiili.",
+      "1) Negatif üs sayının işaretini negatif YAPMAZ, sayıyı çarpmaya göre tersine çevirir.\n" +
+      "2) (-a)^çift = pozitif, (-a)^tek = negatif.\n" +
+      "3) Parantez yoksa işaret kuvvetten etkilenmez.",
     questions: [
       {
         questionType: "MULTIPLE_CHOICE",
-        questionText: "Aşağıdaki cümlelerde geçen altı çizili fiillerden hangisi bir 'İŞ (KILIŞ)' fiilidir?",
-        optionsJson: JSON.stringify([
-          "A) Ali sabah erkenden uyandı.",
-          "B) Bebek beşikte mışıl mışıl uyuyor.",
-          "C) Ayşe ödevindeki soruları dikkatle çözdü.",
-          "D) Bahçedeki yapraklar sonbaharda sarardı.",
-        ]),
-        correctAnswer: "C",
-        explanation: "'Çözdü' fiili nesne alır (onu çözdü denir); bu nedenle iş (kılış) fiilidir.",
+        questionText: "3⁻² ifadesinin sayısal değeri kaçtır?",
+        optionsJson: JSON.stringify(["A) 1/9", "B) -9", "C) -6", "D) 1/6"]),
+        correctAnswer: "A",
+        explanation: "3⁻² = 1 / 3² = 1/9'dur.",
         points: 25,
       },
       {
         questionType: "TRUE_FALSE",
-        questionText: "'Paslanmak', 'sararmak' ve 'büyümek' gibi fiiller zaman içinde kendiliğinden meydana gelen OLUŞ fiilleridir.",
+        questionText:
+          "Negatif üs, bir sayının önüne eksi işareti koyarak sayıyı negatif bir sayıya dönüştürür.",
         optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
-        correctAnswer: "Doğru",
-        explanation: "Oluş fiilleri öznenin iradesi dışında zamanla kendiliğinden gerçekleşen değişimlerdir.",
+        correctAnswer: "Yanlış",
+        explanation:
+          "Negatif üs sayıyı negatif yapmaz; sayıyı ters çevirerek 1/a^n haline getirir.",
         points: 25,
       },
       {
         questionType: "FILL_BLANK",
-        questionText: "Bir fiilin iş fiili olup olmadığını anlamak için fiilin başına '_________' zamiri getirilir.",
+        questionText: "Sıfırdan farklı her tam sayının sıfırıncı kuvveti daima _________ sayısına eşittir.",
         optionsJson: null,
-        correctAnswer: "onu",
-        explanation: "İş fiilleri nesne aldığı için başına 'onu' sözcüğü getirildiğinde anlamlı olur.",
+        correctAnswer: "1",
+        explanation: "a⁰ = 1 kuralıdır.",
         points: 25,
       },
       {
         questionType: "MULTIPLE_CHOICE",
-        questionText: "Aşağıdakilerden hangisi bir 'DURUM' fiilidir?",
-        optionsJson: JSON.stringify(["A) Gülmek", "B) Kırmak", "C) Küflenmek", "D) Taşımak"]),
+        questionText: "(-2)⁴ ile -2⁴ işlemlerinin sonuçları sırasıyla hangisinde doğru verilmiştir?",
+        optionsJson: JSON.stringify([
+          "A) +16 ve -16",
+          "B) -16 ve +16",
+          "C) +16 ve +16",
+          "D) -8 ve +8",
+        ]),
         correctAnswer: "A",
-        explanation: "'Gülmek' fiili nesne almaz (onu güldü denmez) ve öznenin durumunu gösterir.",
+        explanation:
+          "(-2)⁴ parantez içinde çift kuvvet olduğu için +16, -2⁴ ise parantezsiz olduğu için -16'dır.",
+        points: 25,
+      },
+    ],
+  },
+
+  // ==========================================
+  // DİN KÜLTÜRÜ VE AHLAK BİLGİSİ (8. SINIF)
+  // ==========================================
+  "DİN.8.1.1": {
+    topicTitle: "Kader ve Kaza İnancı / Evrendeki Yasalar",
+    introduction:
+      "Merhaba! 8. Sınıf Din Kültürü dersimizin 1. ünitesi olan Kader İnancı konusunu inceleyeceğiz. Evrendeki mükemmel düzen, sünnetullah ve fiziksel-biyolojik-toplumsal yasalar hakkında ön bilgi edinmeye hazır mısın?",
+    summary:
+      "Kader: Allah'ın başlangıçtan sonsuza kadar meydana gelecek her şeyi belirli bir ölçü, düzen ve uyum içinde planlaması ve takdir etmesidir.\n" +
+      "Kaza: Allah'ın takdir ettiği bu plan ve yasaların zamanı gelince gerçekleşip meydana gelmesidir.\n\n" +
+      "Sünnetullah (Evrendeki Yasalar):\n" +
+      "Allah evreni başıboş bırakmamış, belirli ilahi kanunlara bağlamıştır. Bu yasalar üçe ayrılır:\n" +
+      "1) Fiziksel Yasalar: Madde ve enerjinin yapısı, değişimi ve hareketini inceler. Evrensel ve deneyle sabittir (Yerçekimi kanunu, suyun 100°C'de kaynaması, gemilerin suda yüzmesi).\n" +
+      "2) Biyolojik Yasalar: Canlıların doğması, gelişmesi, üremesi ve anatomik yapısıyla ilgilidir (Kuşların uçmasını sağlayan kanat yapısı, fotosentez, canlıların solunumu).\n" +
+      "3) Toplumsal Yasalar: İnsanlar arasındaki ilişkiler, adalet, ahlak, eşitlik ve toplumların huzur kurallarıdır (Adaletin olmadığı toplumların çökmesi, göçler).",
+    keyConcepts: [
+      {
+        term: "Kader",
+        desc: "Allah'ın her şeyi bir ölçü, düzen ve kanuna göre önceden takdir etmesi ve planlaması.",
+      },
+      {
+        term: "Kaza",
+        desc: "Takdir edilen olayların yeri ve zamanı geldiğinde gerçekleşmesi.",
+      },
+      {
+        term: "Sünnetullah",
+        desc: "Allah'ın evrendeki düzeni sağlamak için koyduğu değişmez fiziksel, biyolojik ve toplumsal yasaların genel adı.",
+      },
+      {
+        term: "Ölçü ve Denge",
+        desc: "Evrende hiçbir şeyin tesadüf olmadığını, her varlığın kusursuz bir ahenk içinde yaratıldığını ifade eden ilke.",
+      },
+    ],
+    example:
+      "Bir mimarın binanın projesini çizip planlaması 'kader', o binanın projeye uygun olarak tuğla tuğla inşa edilip tamamlanması ise 'kaza'dır.",
+    mustKnow:
+      "1) Kader plan ve ölçü, kaza ise o planın gerçekleşmesidir.\n" +
+      "2) Fiziksel yasalar maddeyi, biyolojik yasalar canlıları, toplumsal yasalar insan ilişkilerini konu alır.\n" +
+      "3) Evrendeki hiçbir kanun tesadüf eseri değildir.",
+    questions: [
+      {
+        questionType: "MULTIPLE_CHOICE",
+        questionText:
+          "Gemilerin suyun kaldırma kuvveti sayesinde batmadan yüzebilmesi evrendeki yasalardan hangisine örnektir?",
+        optionsJson: JSON.stringify([
+          "A) Fiziksel Yasa",
+          "B) Biyolojik Yasa",
+          "C) Toplumsal Yasa",
+          "D) Kimyasal Denge Yasası",
+        ]),
+        correctAnswer: "A",
+        explanation:
+          "Madde ve enerjinin hareketine dayalı kanunlar fiziksel yasalardır.",
+        points: 25,
+      },
+      {
+        questionType: "MULTIPLE_CHOICE",
+        questionText:
+          "Balıkların suda solunum yapabilmeleri için solungaçlara sahip olması hangi yasa kapsamındadır?",
+        optionsJson: JSON.stringify([
+          "A) Biyolojik Yasa",
+          "B) Fiziksel Yasa",
+          "C) Toplumsal Yasa",
+          "D) Astronomik Yasa",
+        ]),
+        correctAnswer: "A",
+        explanation:
+          "Canlıların yapısı ve yaşamsal özellikleri biyolojik yasalarla açıklanır.",
+        points: 25,
+      },
+      {
+        questionType: "TRUE_FALSE",
+        questionText:
+          "Kader Allah'ın her şeyi önceden bir ölçü ve plana göre takdir etmesi, kaza ise zamanı geldiğinde bu takdirin gerçekleşmesidir.",
+        optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
+        correctAnswer: "Doğru",
+        explanation:
+          "Kader takdir ve plan, kaza ise gerçekleşme ve yaratılmadır.",
+        points: 25,
+      },
+      {
+        questionType: "FILL_BLANK",
+        questionText:
+          "Allah'ın evrene koyduğu fiziksel, biyolojik ve toplumsal yasaların Kur'an'daki genel adı _________ kavramı ile ifade edilir.",
+        optionsJson: null,
+        correctAnswer: "Sünnetullah",
+        explanation: "Sünnetullah Allah'ın evrendeki değişmez kanunlarıdır.",
+        points: 25,
+      },
+    ],
+  },
+
+  // ==========================================
+  // İNGİLİZCE (8. SINIF)
+  // ==========================================
+  "E8.1.L1": {
+    topicTitle: "Friendship / Making Offers & Polite Responses",
+    introduction:
+      "Hello! Welcome to 8th Grade Unit 1: Friendship. Before coming to class, let's learn how to make offers, accept or refuse invitations politely, and talk about personal qualities of a true friend!",
+    summary:
+      "In this unit, we learn communication expressions for invitations and friend qualities:\n\n" +
+      "1) Making Offers & Invitations:\n" +
+      "- Would you like to join us? (Bize katılmak ister misin?)\n" +
+      "- How about going to the cinema? (Sinemaya gitmeye ne dersin?)\n" +
+      "- Why don't we drink something? (Neden bir şeyler içmiyoruz?)\n\n" +
+      "2) Accepting Politely:\n" +
+      "- Yes, I'd love to! (Evet, çok isterim!)\n" +
+      "- Sure, that sounds fun / great! (Elbette, kulağa harika geliyor!)\n\n" +
+      "3) Refusing & Making Excuses (Kibarca Reddetme ve Mazeret):\n" +
+      "- I'm sorry, but I can't. I have to study. (Üzgünüm ama yapamam, ders çalışmak zorundayım.)\n" +
+      "- I'd love to, but I'm busy. (Çok isterdim ama meşgulüm.)\n\n" +
+      "4) Personal Qualities of a True Friend:\n" +
+      "- Honest (dürüst), Reliable (güvenilir), Supportive (destekleyici), Generous (cömert), Loyal (sadık).",
+    keyConcepts: [
+      {
+        term: "Would you like...?",
+        desc: "Kibarca teklifte bulunurken kullanılan en yaygın kalıp.",
+      },
+      {
+        term: "Accepting",
+        desc: "Bir daveti 'Sure, sounds great' diyerek kabul etme.",
+      },
+      {
+        term: "Refusing with excuse",
+        desc: "Daveti reddederken 'I'm sorry, but...' diyerek mazeret belirtme.",
+      },
+      {
+        term: "Reliable",
+        desc: "Sır saklayan, sözünde duran 'güvenilir' arkadaş özelliği.",
+      },
+    ],
+    example:
+      "— Would you like to come to my birthday party on Saturday?\n— I'd love to, but I can't because my grandparents are visiting us.",
+    mustKnow:
+      "1) Teklif cümleleri: Would you like...?, How about...?, Shall we...?\n" +
+      "2) Reddedildiğinde mutlaka mazeret (excuse) belirtmek nezakettir.\n" +
+      "3) True friends count on (güvenmek) and back up (desteklemek) each other.",
+    questions: [
+      {
+        questionType: "MULTIPLE_CHOICE",
+        questionText:
+          "Which of the following is a polite way to REFUSE an invitation with an excuse?",
+        optionsJson: JSON.stringify([
+          "A) I'd love to, but I have an exam tomorrow.",
+          "B) Sure, that sounds awesome!",
+          "C) Why not? See you there.",
+          "D) Yes, definitely!",
+        ]),
+        correctAnswer: "A",
+        explanation:
+          "'I'd love to, but...' ifadesi mazeret bildirerek kibarca reddetmeyi sağlar.",
+        points: 25,
+      },
+      {
+        questionType: "MULTIPLE_CHOICE",
+        questionText:
+          "A person who always tells the truth and never lies is _________.",
+        optionsJson: JSON.stringify([
+          "A) honest",
+          "B) jealous",
+          "C) selfish",
+          "D) arrogant",
+        ]),
+        correctAnswer: "A",
+        explanation: "Honest dürüst demektir.",
+        points: 25,
+      },
+      {
+        questionType: "TRUE_FALSE",
+        questionText:
+          "'Sure, that sounds great!' is used when you ACCEPT an offer enthusiastically.",
+        optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
+        correctAnswer: "Doğru",
+        explanation:
+          "Kulağa harika geliyor ifadesi teklifi kabul etmek için kullanılır.",
+        points: 25,
+      },
+      {
+        questionType: "FILL_BLANK",
+        questionText:
+          "A true friend always _________ you up when you need help (supports you).",
+        optionsJson: null,
+        correctAnswer: "backs",
+        explanation: "Back up desteklemek, arka çıkmak demektir.",
+        points: 25,
+      },
+    ],
+  },
+
+  // ==========================================
+  // TÜRKÇE (8. SINIF)
+  // ==========================================
+  "TÜRK.8.1.1": {
+    topicTitle: "Fiilimsiler (İsim-Fiil, Sıfat-Fiil, Zarf-Fiil)",
+    introduction:
+      "Merhaba! 8. Sınıf LGS Türkçe sınavının temel taşlarından biri olan 'Fiilimsiler' konusuna adım atıyoruz. Fiil kök ve gövdelerinden türeyip cümlede isim, sıfat ve zarf görevi üstlenen bu kelimeleri dersten önce keşfet!",
+    summary:
+      "Fiilimsiler, fiil kök veya gövdelerine belirli ekler getirilerek yapılan; fiil anlamını korumakla birlikte artık çekimli fiil (yüklem gibi şahıs ve kip eki alan) olmayan sözcüklerdir. Fiilimsiler 3 gruba ayrılır:\n\n" +
+      "1) İsim-Fiil (Mastar): Ekleri -ma / -me, -ış / -iş / -uş / -üş, -mak / -mek (Kodlama: MA-YIŞ-MAK).\n" +
+      "Örnek: Kitap okumak zihni dinlendirir.\n" +
+      "Dikkat: Kalıcı isim olan dondurma, çakmak, dolma gibi sözcükler fiilimsi sayılmaz!\n\n" +
+      "2) Sıfat-Fiil (Ortaç): Ekleri -an, -ası, -mez, -ar, -dik, -ecek, -miş (Kodlama: AN-ASI-MEZ-AR-DİK-ECEK-MİŞ).\n" +
+      "Örnek: Tanıdık insanlarla karşılaştık (Nasıl insan? Tanıdık insan).\n\n" +
+      "3) Zarf-Fiil (Bağ-Fiil / Ulaç): Ekleri -ken, -alı, -esiye, -asıya, -madan, -ince, -ip, -arak, -dıkça, -e...-e, -r...-mez.\n" +
+      "Cümleye durum ('Nasıl?') veya zaman ('Ne zaman?') anlamı katar. Örnek: Güle oynaya eve gitti.",
+    keyConcepts: [
+      {
+        term: "İsim-Fiil",
+        desc: "-ma, -ış, -mak ekleriyle türeyip isim görevi üstlenen fiilimsiler.",
+      },
+      {
+        term: "Sıfat-Fiil",
+        desc: "-an, -ası, -mez, -ar, -dik, -ecek, -miş ekleriyle bir ismi niteleyen fiilimsiler.",
+      },
+      {
+        term: "Zarf-Fiil",
+        desc: "Cümleye zaman veya durum anlamı katarak fiili niteleyen fiilimsiler.",
+      },
+      {
+        term: "Kalıcı İsim",
+        desc: "Eylemsi ekini alarak bir nesnenin kalıcı adına dönüşen (ekmek, çakmak, sarma) kelimeler.",
+      },
+    ],
+    example:
+      "'Koşan çocuk hızlı adımlarla yürüyerek yanımıza geldi.' cümlesinde:\n- koşan: sıfat-fiil (-an)\n- yürüyerek: zarf-fiil (-erek)\n- geldi: çekimli fiildir (yüklem).",
+    mustKnow:
+      "1) Fiilimsiler kip ve kişi eki alamaz.\n" +
+      "2) İsim-fiil: -ma, -ış, -mak.\n" +
+      "3) Sıfat-fiil: -an, -ası, -mez, -ar, -dik, -ecek, -miş.\n" +
+      "4) Fiilimsiler yan cümlecik oluşturur.",
+    questions: [
+      {
+        questionType: "MULTIPLE_CHOICE",
+        questionText:
+          "'Gelen yolcuları kapıda karşılamak için sabırsızlanıyordu.' cümlesindeki 'gelen' ve 'karşılamak' sözcüklerinin türü sırasıyla hangisidir?",
+        optionsJson: JSON.stringify([
+          "A) Sıfat-fiil ve İsim-fiil",
+          "B) İsim-fiil ve Zarf-fiil",
+          "C) Zarf-fiil ve Sıfat-fiil",
+          "D) Çekimli fiil ve İsim-fiil",
+        ]),
+        correctAnswer: "A",
+        explanation:
+          "'Gelen' (-en ekiyle) sıfat-fiil, 'karşılamak' (-mak ekiyle) isim-fiildir.",
+        points: 25,
+      },
+      {
+        questionType: "TRUE_FALSE",
+        questionText:
+          "'Annem bugün pazardan sarma ve dondurma aldı.' cümlesindeki 'sarma' ve 'dondurma' sözcükleri kalıcı isim oldukları için fiilimsi DEĞİLDİR.",
+        optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
+        correctAnswer: "Doğru",
+        explanation:
+          "Kalıcı isimler bir nesnenin somut adına dönüştükleri için eylemsilik özelliklerini kaybederler.",
+        points: 25,
+      },
+      {
+        questionType: "FILL_BLANK",
+        questionText:
+          "İsim-fiil ekleri -ma, -ış ve _________ şeklinde tekerleme olarak kodlanır.",
+        optionsJson: null,
+        correctAnswer: "mak",
+        explanation: "MA-YIŞ-MAK ekleridir.",
+        points: 25,
+      },
+      {
+        questionType: "MULTIPLE_CHOICE",
+        questionText:
+          "Aşağıdaki cümlelerin hangisinde fiilimsi cümleye ZAMAN anlamı katmıştır?",
+        optionsJson: JSON.stringify([
+          "A) Zili duyunca hemen kapıya koştu.",
+          "B) Gülerek bana doğru yaklaştı.",
+          "C) Ağlaya sızlaya derdini anlattı.",
+          "D) Koşa koşa merdivenleri çıktı.",
+        ]),
+        correctAnswer: "A",
+        explanation:
+          "'Zili duyunca' (-ince zarf-fiil eki) 'Ne zaman kapıya koştu?' sorusuna yanıt vererek zaman anlamı katmıştır.",
         points: 25,
       },
     ],
   },
 };
 
-/**
- * MEB Maarif Modeli öğrenme çıktılarına %100 bağlı (grounded)
- * ders öncesi hazırlık içeriği ve kontrol soruları üreticisi.
- */
-export function generateGroundedDraft({
-  grade,
-  subject,
-  unitOrTheme,
-  topic,
-  outcomes,
-}: {
+// Aliases for historical / different code formats
+CURRICULUM_KNOWLEDGE_BASE["İNK.8.1.2"] = CURRICULUM_KNOWLEDGE_BASE["İTA.8.1.2"];
+CURRICULUM_KNOWLEDGE_BASE["İNK.8.1.1"] = CURRICULUM_KNOWLEDGE_BASE["İTA.8.1.1"];
+
+export interface GenerateDraftInput {
   grade: number;
   subject: string;
   unitOrTheme: string;
   topic: string;
   outcomes: CurriculumOutcome[];
-}): GeneratedStudyDraft {
+}
+
+export function generatePreClassDraft(
+  subjectOrInput: string | GenerateDraftInput,
+  maybeGrade?: number,
+  maybeUnitOrTheme?: string,
+  maybeTopic?: string,
+  maybeOutcomes?: CurriculumOutcome[]
+): GeneratedStudyDraft {
+  let subject: string;
+  let grade: number;
+  let unitOrTheme: string;
+  let topic: string;
+  let outcomes: CurriculumOutcome[];
+
+  if (typeof subjectOrInput === "object" && subjectOrInput !== null) {
+    subject = subjectOrInput.subject;
+    grade = subjectOrInput.grade;
+    unitOrTheme = subjectOrInput.unitOrTheme;
+    topic = subjectOrInput.topic;
+    outcomes = subjectOrInput.outcomes || [];
+  } else {
+    subject = subjectOrInput;
+    grade = maybeGrade || 8;
+    unitOrTheme = maybeUnitOrTheme || "";
+    topic = maybeTopic || "";
+    outcomes = maybeOutcomes || [];
+  }
   const mainOutcome = outcomes[0];
-  const outcomeCode = mainOutcome?.outcomeCode || "";
+  const outcomeCode = mainOutcome ? mainOutcome.outcomeCode.trim() : "";
 
-  // 1. Zengin bilgi tabanında doğrudan eşleşen kazanım var mı?
-  if (CURRICULUM_KNOWLEDGE_BASE[outcomeCode]) {
-    const preset = CURRICULUM_KNOWLEDGE_BASE[outcomeCode];
-
-    // Konu başlığı kontrolü: Kullanıcı generic ("başlık", "konu", "ödev" vb.) girdiyse zengin başlığı koy
-    const isGenericTopic =
-      !topic ||
-      topic.trim().length <= 3 ||
-      ["başlık", "konu", "ödev", "görev", "test", "deneme"].includes(topic.trim().toLowerCase());
-
-    const effectiveTitle = isGenericTopic ? preset.topicTitle : topic.trim();
-
+  // 1. Bilgi Bankasında birebir kazanım eşleşmesi var mı?
+  if (outcomeCode && CURRICULUM_KNOWLEDGE_BASE[outcomeCode]) {
+    const kb = CURRICULUM_KNOWLEDGE_BASE[outcomeCode];
+    const displayTopic = topic && topic.trim().length > 3 ? topic.trim() : kb.topicTitle;
     return {
-      title: `${effectiveTitle} (${grade}. Sınıf ${subject})`,
-      introduction: preset.introduction,
-      summary: preset.summary,
-      keyConcepts: preset.keyConcepts,
-      example: preset.example,
-      mustKnow: preset.mustKnow,
-      questions: preset.questions.map((q, idx) => ({
+      title: `8. Sınıf Derse Hazırlık: ${displayTopic} (${subject})`,
+      introduction: kb.introduction,
+      summary: kb.summary,
+      keyConcepts: kb.keyConcepts,
+      example: kb.example,
+      mustKnow: kb.mustKnow,
+      questions: kb.questions.map((q, idx) => ({
         ...q,
         order: idx + 1,
       })),
     };
   }
 
-  // 2. Özel / Dinamik MEB Kazanımı İçin Anlamsal Çözümleme
-  // Asla generic şablon metinler üretmez; MEB kazanım metnini ve süreç bileşenlerini
-  // doğrudan öğretici konu anlatımına ve anlama dayalı sorulara dönüştürür.
+  // 2. 8. Sınıf Çerçeve Yıllık Planına Dayalı Dinamik ve Zengin İçerik Oluşturucu
   const isGenericTopic =
     !topic ||
     topic.trim().length <= 3 ||
@@ -807,16 +962,16 @@ export function generateGroundedDraft({
     ? mainOutcome.processComponents
     : "kavramların temel tanımları, ilkeleri ve günlük hayattaki yansımaları";
 
-  const title = `Derse Hazırlık: ${effectiveTopic} (${grade}. Sınıf ${subject})`;
+  const title = `8. Sınıf Derse Hazırlık: ${effectiveTopic} (${subject})`;
 
-  const introduction = `Merhaba! Yarınki ${subject} dersimizde "${effectiveTopic}" konusunu inceleyeceğiz. Derste öğretmeninin anlatacaklarını rahatça takip edebilmek, sorulara doğru yanıtlar verebilmek ve etkinliklere özgüvenle katılabilmek için bu 3–4 dakikalık hazırlık özetini dikkatle oku.`;
+  const introduction = `Merhaba! 8. Sınıf ${subject} dersimizde "${effectiveTopic}" konusunu işleyeceğiz. Yarın sınıfta öğretmenin anlatacaklarını ilk andan itibaren kavramak, LGS ve ders başarını güçlendirmek için bu 3–4 dakikalık hazırlık özetini dikkatle incele.`;
 
   const summary =
-    `Bu dersimizin odak noktasında resmî MEB ${outcomeCode} öğrenme çıktısı yer almaktadır: "${outcomeCleanText}".\n\n` +
-    `Bu konuyla ilgili dersten önce bilmen gereken temel bilgiler şunlardır:\n` +
-    `1. ${effectiveTopic}, ${unitOrTheme} ünitesinin en temel yapı taşlarından biridir.\n` +
-    `2. Yarın derste öğretmeninin üzerinde duracağı kritik süreçler: ${processInfo}.\n` +
-    `3. Yeni bir konuyu öğrenirken en önemli adım, ezber yapmak yerine ana terimlerin ve ilkelerin mantığını kavramaktır. Bu özetteki kavramları anladığında, derste öğretmeninin anlatacağı detayları ve çözülecek örnekleri çok daha kolay takip edeceksin.`;
+    `Bu dersimizin odak noktasında resmî MEB 8. Sınıf ${outcomeCode} öğrenme çıktısı yer almaktadır:\n"${outcomeCleanText}".\n\n` +
+    `Dersten önce mutlaka bilmen gereken temel pedagojik noktalar:\n` +
+    `1. ${effectiveTopic}, ${unitOrTheme} ünitesinin en kritik kazanımlarından biridir.\n` +
+    `2. Yarın derste üzerinde durulacak temel kavramsal odak: ${processInfo}.\n` +
+    `3. Konuyu sınıfta ezberlemek yerine, bu özetteki temel terimlerin mantığını kavrayarak derse gelmen, öğretmenin vereceği örnekleri ve soruları çok daha hızlı çözmeni sağlayacaktır.`;
 
   const keyConcepts = [
     {
@@ -824,54 +979,54 @@ export function generateGroundedDraft({
       desc: outcomeCleanText,
     },
     {
-      term: "Kritik Süreçler",
+      term: "Kritik Odak",
       desc: processInfo,
     },
     {
-      term: "Müfredat Kapsamı",
-      desc: `${grade}. Sınıf ${subject} dersi, ${unitOrTheme} ünitesi.`,
+      term: "MEB Yıllık Plan Kapsamı",
+      desc: `8. Sınıf ${subject} dersi, ${unitOrTheme} ünitesi.`,
     },
   ];
 
   const example =
-    `Günlük hayatla bağlantı kuralım: ${effectiveTopic} konusu, çevremizde gözlemlediğimiz olayları bilimsel ve mantıksal bir temele oturtmamızı sağlar. Bu temel bilgiyi edinerek sınıfa geldiğinde, öğretmeninin tahtaya yazacağı örnekleri doğrudan kavrayacaksın.`;
+    `Günlük hayat bağlantısı: ${effectiveTopic} konusu, 8. sınıfta öğrendiğin bilgilerin somut dünyada ve problem çözümlerinde nasıl karşılık bulduğunu gösterir. Ön bilgiyi şimdi oluşturarak sınıfta tam hazır olacaksın!`;
 
   const mustKnow =
-    `1) Hedeflenen resmî MEB çıktısı: "${outcomeCleanText}"\n` +
-    `2) Derste öğretmeninin özellikle vurgulayacağı süreçler: ${processInfo}\n` +
-    `3) Derste takıldığın veya aklına takılan soruları öğretmenine sormak üzere not alabilirsin.`;
+    `1) Hedeflenen resmî MEB 8. Sınıf çıktısı: "${outcomeCleanText}"\n` +
+    `2) Derste öğretmenin üzerinde duracağı temel süreçler: ${processInfo}\n` +
+    `3) Ön bilgi sorularını yanıtlayarak hazırbulunuşluğunu ölç ve derse özgüvenle katıl.`;
 
   const questions: GeneratedStudyDraft["questions"] = [
     {
       questionType: "MULTIPLE_CHOICE",
-      questionText: `Yarınki dersimizde ele alacağımız konunun resmî MEB öğretim programında hedeflenen ana öğrenme çıktısı aşağıdakilerden hangisidir?`,
+      questionText: `8. Sınıf ${subject} dersimizde ele alacağımız konunun resmî MEB öğretim programında hedeflenen ana öğrenme çıktısı hangisidir?`,
       optionsJson: JSON.stringify([
         `A) ${outcomeCleanText}`,
-        "B) Konunun yalnızca tarihsel geçmişini ezberlemek",
-        "C) Üniversite düzeyindeki teorik tartışmaları incelemek",
-        "D) Konuyu yalnızca internet araştırmasıyla sınırlandırmak",
+        "B) Yalnızca formülleri ezberlemek",
+        "C) Konuyu müfredat dışı ileri akademik tartışmalarla sınırlandırmak",
+        "D) Rastgele varsayımlarda bulunmak",
       ]),
       correctAnswer: "A",
-      explanation: `Resmî MEB Maarif Modeli çıktısı: ${outcomeCode} - ${outcomeCleanText}`,
+      explanation: `Resmî MEB 8. Sınıf çıktısı: ${outcomeCode} - ${outcomeCleanText}`,
       points: 25,
       order: 1,
     },
     {
       questionType: "TRUE_FALSE",
-      questionText: `Bu derse hazırlık çalışmasının temel amacı konudaki tüm karmaşık detayları önceden ezberlemek değil, yarın sınıfta öğretmenin anlatımını takip edebilecek temel ön bilgiyi kazanmaktır.`,
+      questionText: `DersÖncesi hazırlığının temel amacı konuyu baştan sona tek başına bitirmek değil, yarın derste öğretmenin anlatımını takip edebilecek temel kavramsal ön bilgiyi edinmektir.`,
       optionsJson: JSON.stringify(["Doğru", "Yanlış"]),
       correctAnswer: "Doğru",
       explanation:
-        "DersÖncesi platformunun amacı öğrencinin hazır bulunuşluğunu sağlamaktır; konuyu derste öğretmen anlatacaktır.",
+        "DersÖncesi akıllı hazırbulunuşluk oluşturur; derinlemesine ders öğretmenin rehberliğinde sınıfta işlenir.",
       points: 25,
       order: 2,
     },
     {
       questionType: "FILL_BLANK",
-      questionText: `Bu konu Millî Eğitim Bakanlığı müfredatına göre "_________" ünitesi / teması altında yer almaktadır.`,
+      questionText: `Bu konu MEB 8. Sınıf çerçeve planında "_________" ünitesi altında yer almaktadır.`,
       optionsJson: null,
       correctAnswer: unitOrTheme.toLowerCase().trim(),
-      explanation: `Konu MEB öğretim programında "${unitOrTheme}" ünitesi altında yer almaktadır.`,
+      explanation: `Konu MEB çerçeve planında "${unitOrTheme}" ünitesindedir.`,
       points: 25,
       order: 3,
     },
@@ -880,12 +1035,12 @@ export function generateGroundedDraft({
       questionText: `Öğretmenimizin derste üzerinde özellikle duracağı temel süreçler ve kavramsal odak hangisidir?`,
       optionsJson: JSON.stringify([
         `A) ${processInfo}`,
-        "B) Yalnızca yabancı dillerdeki terimler",
-        "C) Müfredat dışı ileri matematiksel formüller",
-        "D) Rastgele seçilmiş varsayımlar",
+        "B) Konuyla ilgisiz tarihsel anekdotlar",
+        "C) Müfredat dışı yabancı dil terimleri",
+        "D) Rastgele genel kültür bilgileri",
       ]),
       correctAnswer: "A",
-      explanation: `MEB Maarif Modeli süreç bileşeni: ${processInfo}`,
+      explanation: `MEB çerçeve planı süreç bileşeni: ${processInfo}`,
       points: 25,
       order: 4,
     },
@@ -901,3 +1056,5 @@ export function generateGroundedDraft({
     questions,
   };
 }
+
+export const generateGroundedDraft = generatePreClassDraft;

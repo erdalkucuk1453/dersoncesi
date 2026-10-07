@@ -34,8 +34,8 @@ export default function TeacherClassesPage() {
   // New Class Form State
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
-  const [grade, setGrade] = useState("7");
-  const [subject, setSubject] = useState("Fen Bilimleri");
+  const [grade, setGrade] = useState("8");
+  const [subject, setSubject] = useState("Matematik");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -91,13 +91,12 @@ export default function TeacherClassesPage() {
   };
 
   const subjectsList = [
-    "Türkçe",
     "Matematik",
     "Fen Bilimleri",
-    "İngilizce",
-    "Sosyal Bilgiler",
     "T.C. İnkılap Tarihi ve Atatürkçülük",
     "Din Kültürü ve Ahlak Bilgisi",
+    "İngilizce",
+    "Türkçe",
   ];
 
   return (
@@ -241,7 +240,7 @@ export default function TeacherClassesPage() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="7/A, 8/B vb."
+                  placeholder="8/A, 8/B, 8/C vb."
                   required
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
                 />
@@ -254,12 +253,9 @@ export default function TeacherClassesPage() {
                 <select
                   value={grade}
                   onChange={(e) => setGrade(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-slate-50 font-semibold"
                 >
-                  <option value="5">5. Sınıf</option>
-                  <option value="6">6. Sınıf</option>
-                  <option value="7">7. Sınıf</option>
-                  <option value="8">8. Sınıf</option>
+                  <option value="8">8. Sınıf (MEB Yıllık Çerçeve Planı)</option>
                 </select>
               </div>
 

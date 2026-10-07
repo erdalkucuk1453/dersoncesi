@@ -100,15 +100,15 @@ export default function MebProgramPage() {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-2xl font-black text-slate-900 tracking-tight">
-                  MEB Türkiye Yüzyılı Maarif Modeli Öğretim Programı
+                  8. Sınıf MEB Çerçeve Yıllık Plan Öğrenme Çıktıları
                 </h1>
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold text-xs flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>%100 Doğrulanmış</span>
+                  <span>2026-2027 %100 Doğrulanmış</span>
                 </span>
               </div>
               <p className="text-xs text-slate-500 mt-1 max-w-2xl leading-relaxed">
-                Platformumuzda yer alan tüm öğrenme çıktıları, Millî Eğitim Bakanlığı Temel Eğitim programından alınmış olup kesinlikle harici, yapay veya uydurma kazanım içermez.
+                Platformumuz sadece 8. sınıflara özel olarak yapılandırılmış olup; Matematik, Fen Bilimleri, T.C. İnkılap Tarihi ve Atatürkçülük, Din Kültürü ve Ahlak Bilgisi, İngilizce ve Türkçe derslerinin 2026-2027 çerçeve yıllık plan kazanımlarını içerir.
               </p>
             </div>
           </div>
@@ -122,7 +122,7 @@ export default function MebProgramPage() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Kazanım kodu (Örn: FEN.7.1.1), tema veya kavram ara..."
+              placeholder="Kazanım kodu (Örn: M.8.1.1.1, F.8.1.1.1, İTA.8.1.2, DİN.8.1.1), tema veya kavram ara..."
               className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
@@ -131,13 +131,9 @@ export default function MebProgramPage() {
             <select
               value={gradeFilter}
               onChange={(e) => setGradeFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white font-medium"
+              className="px-3 py-2 rounded-xl border border-slate-200 text-xs bg-slate-50 font-bold text-indigo-700"
             >
-              <option value="ALL">Tüm Sınıflar</option>
-              <option value="5">5. Sınıf</option>
-              <option value="6">6. Sınıf</option>
-              <option value="7">7. Sınıf</option>
-              <option value="8">8. Sınıf</option>
+              <option value="8">8. Sınıf (LGS & MEB Planı)</option>
             </select>
 
             <select
