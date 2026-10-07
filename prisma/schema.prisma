@@ -1,0 +1,176 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   // "TEACHER" or "STUDENT"
+  createdAt    DateTime @default(now())
+
+  // Relations
+  taughtClasses     Class[]             @relation("TeacherClasses")
+  enrolledClasses   ClassMember[]       @relation("StudentClassMembers")
+  assignments       Assignment[]        @relation("TeacherAssignments")
+  studentAssignments StudentAssignment[] @relation("StudentAssignments")
+}
+
+model Class {
+  id        String   @id @default(cuid())
+  teacherId String
+  name      String   // e.g. "7/A"
+  grade     Int      // 5, 6, 7, 8
+  subject   String   // e.g. "Fen Bilimleri"
+  joinCode  String   @unique // e.g. "7A-K4P82"
+  createdAt DateTime @default(now())
+
+  teacher   User          @relation("TeacherClasses", fields: [teacherId], references: [id], onDelete: Cascade)
+  members   ClassMember[]
+  assignments Assignment[]
+}
+
+model ClassMember {
+  id        String   @id @default(cuid())
+  classId   String
+  studentId String
+  joinedAt  DateTime @default(now())
+
+  class   Class @relation(fields: [classId], references: [id], onDelete: Cascade)
+  student User  @relation("StudentClassMembers", fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([classId, studentId])
+}
+
+model CurriculumOutcome {
+  id                String   @id @default(cuid())
+  subject           String   // "Türkçe", "Matematik", "Fen Bilimleri", "İngilizce", "Sosyal Bilgiler", "T.C. İnkılap Tarihi ve Atatürkçülük", "Din Kültürü ve Ahlak Bilgisi"
+  grade             Int      // 5, 6, 7, 8
+  unitOrTheme       String   // e.g. "Hücre ve Bölünmeler"
+  outcomeCode       String   @unique // e.g. "FEN.7.1.1"
+  outcomeText       String   // Tam metin
+  processComponents String?  // Süreç bileşenleri / alt açıklamalar
+  sourceUrl         String   @default("https://tymm.meb.gov.tr/ogretim-programlari/temel-egitim")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  assignmentOutcomes AssignmentOutcome[]
+}
+
+model Assignment {
+  id           String    @id @default(cuid())
+  teacherId    String
+  classId      String
+  subject      String
+  grade        Int
+  unitOrTheme  String
+  topic        String
+  minimumScore Int       @default(70) // 0-100, default %70
+  maxAttempts  Int       @default(0)  // 0 = unlimited
+  deadline     DateTime
+  status       String    @default("DRAFT") // "DRAFT", "PUBLISHED", "CLOSED"
+  publishedAt  DateTime?
+  createdAt    DateTime  @default(now())
+
+  teacher            User                @relation("TeacherAssignments", fields: [teacherId], references: [id], onDelete: Cascade)
+  class              Class               @relation(fields: [classId], references: [id], onDelete: Cascade)
+  assignmentOutcomes AssignmentOutcome[]
+  studyContent       StudyContent?
+  questions          Question[]
+  studentAssignments StudentAssignment[]
+}
+
+model AssignmentOutcome {
+  id           String @id @default(cuid())
+  assignmentId String
+  outcomeId    String
+
+  assignment Assignment        @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  outcome    CurriculumOutcome @relation(fields: [outcomeId], references: [id], onDelete: Cascade)
+
+  @@unique([assignmentId, outcomeId])
+}
+
+model StudyContent {
+  id              String   @id @default(cuid())
+  assignmentId    String   @unique
+  title           String
+  introduction    String   // Aşama 1: Konuya Giriş
+  summary         String   // Aşama 2: Kısa Konu Özeti (3-5 dk)
+  keyConcepts     String   // Temel Kavramlar (JSON veya biçimli metin)
+  example         String   // Basit Örnek
+  mustKnow        String   // "Bunu Bilmen Yeterli" bölümü
+  teacherApproved Boolean  @default(false)
+  approvalStatus  String   @default("DRAFT") // "DRAFT", "TEACHER_APPROVED"
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  assignment Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+}
+
+model Question {
+  id           String  @id @default(cuid())
+  assignmentId String
+  questionType String  // "MULTIPLE_CHOICE", "TRUE_FALSE", "FILL_BLANK", "MATCHING", "SHORT_ANSWER"
+  questionText String
+  contextText  String?
+  optionsJson  String? // JSON array of options: ["A) ...", "B) ..."] or pairs for matching
+  correctAnswer String // "A" or "TRUE" or answer text or JSON
+  explanation  String? // Açıklama ve çözüm
+  points       Int     @default(10)
+  order        Int     @default(1)
+
+  assignment Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  answers    Answer[]
+}
+
+model StudentAssignment {
+  id                 String    @id @default(cuid())
+  assignmentId       String
+  studentId          String
+  status             String    @default("NOT_STARTED") 
+  // "NOT_STARTED", "READING", "READY_FOR_ASSESSMENT", "ASSESSMENT_IN_PROGRESS", "NEEDS_REVIEW", "READY_FOR_CLASS", "EXPIRED"
+  summaryOpenedAt    DateTime?
+  summaryConfirmedAt DateTime?
+  completedAt        DateTime?
+  createdAt          DateTime  @default(now())
+
+  assignment Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  student    User       @relation("StudentAssignments", fields: [studentId], references: [id], onDelete: Cascade)
+  attempts   Attempt[]
+
+  @@unique([assignmentId, studentId])
+}
+
+model Attempt {
+  id                  String    @id @default(cuid())
+  studentAssignmentId String
+  attemptNumber       Int       @default(1)
+  score               Int       @default(0) // 0-100
+  isPassed            Boolean   @default(false)
+  startedAt           DateTime  @default(now())
+  submittedAt         DateTime?
+
+  studentAssignment StudentAssignment @relation(fields: [studentAssignmentId], references: [id], onDelete: Cascade)
+  answers           Answer[]
+}
+
+model Answer {
+  id              String   @id @default(cuid())
+  attemptId       String
+  questionId      String
+  studentAnswer   String
+  isCorrect       Boolean  @default(false)
+  score           Int      @default(0)
+  teacherReview   Boolean  @default(false)
+  teacherFeedback String?
+
+  attempt  Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
