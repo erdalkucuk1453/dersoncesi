@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import { generateGroundedDraft } from "@/lib/content-generator";
+import { generateAIAssistedAssignment } from "@/lib/ai-service";
 
 export const dynamic = "force-dynamic";
 
@@ -161,6 +162,10 @@ export async function POST(req: NextRequest) {
       minimumScore = 70,
       maxAttempts = 0,
       deadline,
+      difficulty = "MEDIUM",
+      questionCount = 5,
+      questionTypes = ["MULTIPLE_CHOICE", "TRUE_FALSE", "FILL_BLANK", "MATCHING"],
+      teacherPrompt = "",
     } = body;
 
     // Strict validation
@@ -202,14 +207,20 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Generate grounded study content draft and questions strictly based on selected outcomes
-    const draft = generateGroundedDraft({
-      grade: parseInt(grade, 10),
+    // Generate AI-assisted study content draft and questions strictly based on selected outcomes and teacher config
+    const draft = await generateAIAssistedAssignment(
       subject,
+      parseInt(grade, 10),
       unitOrTheme,
-      topic: topic.trim(),
-      outcomes: officialOutcomes,
-    });
+      topic.trim(),
+      officialOutcomes,
+      {
+        difficulty,
+        questionCount: parseInt(questionCount, 10) || 5,
+        questionTypes,
+        teacherPrompt: teacherPrompt.trim(),
+      }
+    );
 
     // Create assignment in DRAFT status
     const assignment = await prisma.assignment.create({

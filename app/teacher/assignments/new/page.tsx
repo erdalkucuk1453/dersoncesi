@@ -64,6 +64,17 @@ function NewAssignmentWizardForm() {
   const [generating, setGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // AI Configuration State
+  const [difficulty, setDifficulty] = useState<"BASIC" | "MEDIUM" | "ADVANCED">("MEDIUM");
+  const [questionCount, setQuestionCount] = useState<number>(5);
+  const [questionTypes, setQuestionTypes] = useState<string[]>([
+    "MULTIPLE_CHOICE",
+    "TRUE_FALSE",
+    "FILL_BLANK",
+    "MATCHING",
+  ]);
+  const [teacherPrompt, setTeacherPrompt] = useState<string>("");
+
   // Load teacher's classes
   useEffect(() => {
     const fetchClasses = async () => {
@@ -176,6 +187,10 @@ function NewAssignmentWizardForm() {
           minimumScore,
           maxAttempts,
           deadline,
+          difficulty,
+          questionCount,
+          questionTypes,
+          teacherPrompt,
         }),
       });
 
@@ -202,7 +217,7 @@ function NewAssignmentWizardForm() {
     "Konu",
     "Başarı Eşiği",
     "Son Tarih",
-    "Taslak Oluştur",
+    "AI & Taslak",
   ];
 
   return (
@@ -579,14 +594,159 @@ function NewAssignmentWizardForm() {
           </div>
         )}
 
-        {/* ADIM 8: Taslak Oluşturma ve Doğrulama */}
+        {/* ADIM 8: Yapay Zeka Destekli Görev Oluşturma */}
         {step === 8 && (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <div>
-              <h2 className="text-lg font-black text-slate-900">Adım 8: Hazırlık Taslağını Başlat</h2>
-              <p className="text-xs text-slate-500">
-                Tüm parametreler MEB Türkiye Yüzyılı Maarif Modeli çerçevesinde doğrulandı.
+              <div className="flex items-center gap-2">
+                <span className="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">
+                  <Sparkles className="w-4 h-4" />
+                </span>
+                <h2 className="text-lg font-black text-slate-900">
+                  Adım 8: Yapay Zeka Destekli Hazırlık Taslağı
+                </h2>
+              </div>
+              <p className="text-xs text-slate-500 mt-1">
+                MEB 8. Sınıf çerçeve planı kazanımına göre yapay zeka modelinin üreteceği içerik ve soruları özelleştirin.
               </p>
+            </div>
+
+            {/* AI Configuration Box */}
+            <div className="p-5 bg-gradient-to-br from-indigo-50/70 via-white to-sky-50/70 rounded-3xl border border-indigo-100 space-y-4">
+              <div className="flex items-center justify-between border-b border-indigo-100/60 pb-3">
+                <span className="text-xs font-black text-indigo-900 uppercase tracking-wide flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+                  <span>Yapay Zeka İçerik & Soru Yapılandırması</span>
+                </span>
+                <span className="text-[11px] font-bold text-indigo-600 bg-white px-2.5 py-1 rounded-full border border-indigo-100 shadow-xs">
+                  MEB 8. Sınıf Modeli
+                </span>
+              </div>
+
+              {/* Zorluk Seviyesi */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-2">
+                  Hedef Seviye / Pedagojik Derinlik:
+                </label>
+                <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                  {[
+                    { id: "BASIC", label: "🌱 Temel Düzey", desc: "Yalın kavramsal ön bilgi" },
+                    { id: "MEDIUM", label: "🎯 LGS Düzeyi", desc: "Önerilen standart analiz" },
+                    { id: "ADVANCED", label: "🚀 Beceri Temelli", desc: "Yeni nesil LGS tarzı" },
+                  ].map((lvl) => (
+                    <button
+                      key={lvl.id}
+                      type="button"
+                      onClick={() => setDifficulty(lvl.id as any)}
+                      className={`p-3 rounded-2xl border text-left transition-all ${
+                        difficulty === lvl.id
+                          ? "border-indigo-600 bg-white shadow-sm ring-2 ring-indigo-200"
+                          : "border-slate-200 bg-white/70 hover:bg-white"
+                      }`}
+                    >
+                      <p className="text-xs font-black text-slate-900">{lvl.label}</p>
+                      <p className="text-[10px] text-slate-500 mt-0.5">{lvl.desc}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Soru Sayısı ve Soru Türleri */}
+              <div className="grid sm:grid-cols-2 gap-4 pt-1">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Hazırlanacak Kontrol Sorusu Sayısı:
+                  </label>
+                  <div className="flex items-center gap-2">
+                    {[3, 5, 7].map((cnt) => (
+                      <button
+                        key={cnt}
+                        type="button"
+                        onClick={() => setQuestionCount(cnt)}
+                        className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-all ${
+                          questionCount === cnt
+                            ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                            : "bg-white text-slate-700 border-slate-200 hover:border-indigo-200"
+                        }`}
+                      >
+                        {cnt} Soru {cnt === 5 && "(Önerilen)"}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    İçerilecek Soru Türleri:
+                  </label>
+                  <div className="flex flex-wrap gap-1.5">
+                    {[
+                      { id: "MULTIPLE_CHOICE", label: "Çoktan Seçmeli" },
+                      { id: "TRUE_FALSE", label: "D/Y" },
+                      { id: "FILL_BLANK", label: "Boşluk Doldurma" },
+                      { id: "MATCHING", label: "Eşleştirme" },
+                    ].map((type) => {
+                      const isSel = questionTypes.includes(type.id);
+                      return (
+                        <button
+                          key={type.id}
+                          type="button"
+                          onClick={() => {
+                            if (isSel) {
+                              if (questionTypes.length > 1) {
+                                setQuestionTypes(questionTypes.filter((t) => t !== type.id));
+                              }
+                            } else {
+                              setQuestionTypes([...questionTypes, type.id]);
+                            }
+                          }}
+                          className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                            isSel
+                              ? "bg-indigo-100 text-indigo-800 border border-indigo-200"
+                              : "bg-white text-slate-400 border border-slate-200"
+                          }`}
+                        >
+                          {isSel ? "✓ " : ""}{type.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Özel Öğretmen Talimatı (Prompt) */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Yapay Zekaya Özel Öğretmen Talimatı (Opsiyonel):
+                </label>
+                <textarea
+                  rows={2}
+                  value={teacherPrompt}
+                  onChange={(e) => setTeacherPrompt(e.target.value)}
+                  placeholder="Örn: Günlük hayattan bir analoji ekle, öğrencilerin kavram yanılgılarını önleyecek net bir açıklama hazırla..."
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+
+                {/* Hızlı Çip Butonları */}
+                <div className="flex flex-wrap items-center gap-1.5 mt-2">
+                  <span className="text-[11px] font-semibold text-slate-400 mr-1">Hızlı İpuçları:</span>
+                  {[
+                    "⚡ Sade ve Kısa Tut (3 dk)",
+                    "🎯 LGS Tarzı Günlük Yaşam Analojisi Ekle",
+                    "💡 Kavram Yanılgılarına Odaklan",
+                    "📝 Maddeler Halinde Açıkla",
+                  ].map((chip) => (
+                    <button
+                      key={chip}
+                      type="button"
+                      onClick={() => setTeacherPrompt(chip)}
+                      className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-indigo-300 hover:text-indigo-600 transition-colors"
+                    >
+                      {chip}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Summary card */}
@@ -623,7 +783,7 @@ function NewAssignmentWizardForm() {
             <div className="p-3.5 bg-amber-50 rounded-2xl border border-amber-200 text-amber-800 text-xs flex items-start gap-2.5">
               <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
               <span>
-                <strong>Zorunlu Öğretmen Onayı:</strong> Sistem MEB kazanımlarına bağlı taslağı oluşturacak ve sizi inceleme ekranına yönlendirecektir. Siz onaylamadan görev öğrencilere yayınlanmaz.
+                <strong>Zorunlu Öğretmen Onay Kilidi:</strong> Yapay zeka MEB kazanımlarına bağlı taslak özeti ve soruları ürettikten sonra doğrudan düzenleme ve onaylama ekranına yönlendirileceksiniz. Siz onaylamadan görev öğrencilere yayınlanmaz.
               </span>
             </div>
           </div>
@@ -669,10 +829,10 @@ function NewAssignmentWizardForm() {
               type="button"
               onClick={handleCreateAssignment}
               disabled={generating}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-200 transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-md shadow-indigo-200 transition-colors disabled:opacity-50"
             >
               <Sparkles className="w-4 h-4" />
-              <span>{generating ? "Taslak Oluşturuluyor..." : "Taslak Oluştur ve İncele"}</span>
+              <span>{generating ? "🤖 Yapay Zeka Görevi Hazırlıyor..." : "🤖 Yapay Zeka ile Görevi Üret ve İncele"}</span>
             </button>
           )}
         </div>

@@ -66,6 +66,15 @@ export default function AssignmentEditPage() {
   // Questions
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
 
+  // AI Refine & Question Generator State
+  const [aiInstruction, setAiInstruction] = useState("");
+  const [refiningAI, setRefiningAI] = useState(false);
+  const [showAIQuestionPanel, setShowAIQuestionPanel] = useState(false);
+  const [aiQType, setAiQType] = useState<"MULTIPLE_CHOICE" | "TRUE_FALSE" | "FILL_BLANK" | "MATCHING">("MULTIPLE_CHOICE");
+  const [aiQDifficulty, setAiQDifficulty] = useState<"BASIC" | "MEDIUM" | "ADVANCED">("MEDIUM");
+  const [aiQCustomPrompt, setAiQCustomPrompt] = useState("");
+  const [generatingAIQuestion, setGeneratingAIQuestion] = useState(false);
+
   useEffect(() => {
     const fetchAssignment = async () => {
       try {
@@ -209,6 +218,102 @@ export default function AssignmentEditPage() {
     const updated = [...questions];
     updated[index] = { ...updated[index], [field]: value };
     setQuestions(updated);
+  };
+
+  const handleRefineWithAI = async (overridePrompt?: string) => {
+    const inst = (overridePrompt || aiInstruction).trim();
+    if (!inst) {
+      alert("Lütfen yapay zekaya bir talimat yazınız veya hızlı butonlardan birini seçiniz.");
+      return;
+    }
+
+    setRefiningAI(true);
+    setMessage(null);
+
+    try {
+      const res = await fetch("/api/ai/refine", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          introduction,
+          summary,
+          keyConcepts,
+          example,
+          mustKnow,
+          instruction: inst,
+          subject: assignment.subject,
+          grade: assignment.grade,
+          unitOrTheme: assignment.unitOrTheme,
+          topic: assignment.topic,
+          outcomeText: assignment.outcomes?.[0]?.outcomeText,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setMessage({ text: data.error || "Yapay zeka iyileştirmesi yapılamadı.", type: "error" });
+      } else if (data.refined) {
+        setTitle(data.refined.title || title);
+        setIntroduction(data.refined.introduction || introduction);
+        setSummary(data.refined.summary || summary);
+        setKeyConcepts(data.refined.keyConcepts || keyConcepts);
+        setExample(data.refined.example || example);
+        setMustKnow(data.refined.mustKnow || mustKnow);
+        setAiInstruction("");
+        setMessage({ text: "✨ Konu özeti yapay zeka tarafından başarıyla güncellendi!", type: "success" });
+      }
+    } catch {
+      setMessage({ text: "Bağlantı hatası oluştu.", type: "error" });
+    } finally {
+      setRefiningAI(false);
+    }
+  };
+
+  const handleGenerateAIQuestion = async () => {
+    setGeneratingAIQuestion(true);
+    setMessage(null);
+
+    try {
+      const res = await fetch("/api/ai/question", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject: assignment.subject,
+          grade: assignment.grade,
+          unitOrTheme: assignment.unitOrTheme,
+          topic: assignment.topic,
+          summaryText: summary,
+          questionType: aiQType,
+          difficulty: aiQDifficulty,
+          customPrompt: aiQCustomPrompt.trim(),
+          outcomeText: assignment.outcomes?.[0]?.outcomeText,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setMessage({ text: data.error || "Yapay zeka soru üretemedi.", type: "error" });
+      } else if (data.question) {
+        const newQ: QuestionItem = {
+          order: questions.length + 1,
+          questionType: data.question.questionType,
+          questionText: data.question.questionText,
+          optionsJson: data.question.optionsJson,
+          correctAnswer: data.question.correctAnswer,
+          explanation: data.question.explanation || "",
+          points: data.question.points || 20,
+        };
+        setQuestions([...questions, newQ]);
+        setShowAIQuestionPanel(false);
+        setAiQCustomPrompt("");
+        setMessage({ text: "✨ Yeni yapay zeka sorusu listeye başarıyla eklendi!", type: "success" });
+      }
+    } catch {
+      setMessage({ text: "Bağlantı hatası oluştu.", type: "error" });
+    } finally {
+      setGeneratingAIQuestion(false);
+    }
   };
 
   if (loading) {
@@ -414,6 +519,87 @@ export default function AssignmentEditPage() {
           </span>
         </div>
 
+        {/* AI Study Content Assistant Toolbar */}
+        <div className="p-4 rounded-2xl bg-gradient-to-r from-purple-50 via-indigo-50/50 to-pink-50 border border-purple-200/80 space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-purple-600 text-white flex items-center justify-center shadow-xs">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-purple-950">
+                  Yapay Zeka Konu Özeti Asistanı
+                </h4>
+                <p className="text-[11px] text-purple-700">
+                  Özeti tek tıkla 8. sınıf düzeyine uyarlayabilir, analojiler ekleyebilir veya sadeleştirebilirsiniz.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick AI Action Chips */}
+          <div className="flex flex-wrap gap-1.5 pt-1">
+            <button
+              type="button"
+              disabled={refiningAI}
+              onClick={() => handleRefineWithAI("Metni daha sade, 8. sınıf öğrencisinin 3 dakikada okuyup anlayabileceği akıcı ve yalın bir dille yeniden düzenle.")}
+              className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white/90 hover:bg-white text-purple-800 border border-purple-200 shadow-2xs transition-all hover:scale-[1.02] disabled:opacity-50"
+            >
+              ⚡ Sadeleştir & Yalınlaştır
+            </button>
+            <button
+              type="button"
+              disabled={refiningAI}
+              onClick={() => handleRefineWithAI("Konuyu zihinde kalıcı kılacak eğlenceli ve güçlü bir LGS analojisi veya günlük hayat benzetmesi ekle.")}
+              className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white/90 hover:bg-white text-indigo-800 border border-indigo-200 shadow-2xs transition-all hover:scale-[1.02] disabled:opacity-50"
+            >
+              🎯 LGS Analojisi Ekle
+            </button>
+            <button
+              type="button"
+              disabled={refiningAI}
+              onClick={() => handleRefineWithAI("Metnin önemli noktalarını ve terimlerini akılda kalıcı kısa maddeler haline getir.")}
+              className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white/90 hover:bg-white text-emerald-800 border border-emerald-200 shadow-2xs transition-all hover:scale-[1.02] disabled:opacity-50"
+            >
+              📝 Maddeler Haline Getir
+            </button>
+            <button
+              type="button"
+              disabled={refiningAI}
+              onClick={() => handleRefineWithAI("Öğrencilerin bu konuda LGS'de en sık düştüğü kavram yanılgılarını belirterek dikkat uyarısı ekle.")}
+              className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white/90 hover:bg-white text-amber-800 border border-amber-200 shadow-2xs transition-all hover:scale-[1.02] disabled:opacity-50"
+            >
+              ⚠️ Kavram Yanılgılarını Açıkla
+            </button>
+          </div>
+
+          {/* Custom Instruction Input */}
+          <div className="flex gap-2 pt-1">
+            <input
+              type="text"
+              value={aiInstruction}
+              onChange={(e) => setAiInstruction(e.target.value)}
+              placeholder="Veya özel talimatınızı yazın (Örn: Örneği futbol maçı analojisiyle değiştir...)"
+              className="flex-1 px-3 py-2 text-xs rounded-xl border border-purple-200 bg-white/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleRefineWithAI();
+                }
+              }}
+            />
+            <button
+              type="button"
+              disabled={refiningAI || !aiInstruction.trim()}
+              onClick={() => handleRefineWithAI()}
+              className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold transition-all disabled:opacity-50 flex items-center gap-1.5 shadow-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>{refiningAI ? "İyileştiriliyor..." : "Yapay Zeka ile Güncelle"}</span>
+            </button>
+          </div>
+        </div>
+
         <div>
           <label className="block text-xs font-semibold text-slate-700 mb-1">
             Giriş & Motivasyon Cümlesi (Aşama 1)
@@ -465,23 +651,120 @@ export default function AssignmentEditPage() {
 
       {/* TAB 3: Değerlendirme Soruları İncele, Düzenle, Ekle/Sil */}
       <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-xs space-y-4">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
           <div>
             <h2 className="text-base font-black text-slate-900">
               3. Ön Bilgi Kontrol Soruları ({questions.length} Soru)
             </h2>
             <p className="text-xs text-slate-500">
-              Soruları inceleyebilir, silebilir, yeni soru ekleyebilir veya seçenekleri değiştirebilirsiniz.
+              Soruları inceleyebilir, silebilir, yapay zekayla yeni soru üretebilir veya manuel soru ekleyebilirsiniz.
             </p>
           </div>
-          <button
-            onClick={handleAddQuestion}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition-colors"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span>Yeni Soru Ekle</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setShowAIQuestionPanel(!showAIQuestionPanel)}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 text-xs font-bold transition-colors border border-purple-200 shadow-2xs"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-purple-600" />
+              <span>✨ Yapay Zeka ile Soru Üret</span>
+            </button>
+            <button
+              type="button"
+              onClick={handleAddQuestion}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors"
+            >
+              <Plus className="w-3.5 h-3.5" />
+              <span>Manuel Soru Ekle</span>
+            </button>
+          </div>
         </div>
+
+        {/* Collapsible AI Question Generator Panel */}
+        {showAIQuestionPanel && (
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-purple-50/70 via-indigo-50/40 to-slate-50 border border-purple-200 space-y-3 animate-in fade-in duration-200">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-purple-600" />
+                <h4 className="text-xs font-black text-slate-900">
+                  Yapay Zeka Destekli Soru Üretici
+                </h4>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowAIQuestionPanel(false)}
+                className="text-xs text-slate-400 hover:text-slate-600"
+              >
+                Kapat
+              </button>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-3 text-xs">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                  Soru Tipi
+                </label>
+                <select
+                  value={aiQType}
+                  onChange={(e) => setAiQType(e.target.value as any)}
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-medium"
+                >
+                  <option value="MULTIPLE_CHOICE">Çoktan Seçmeli (4 Seçenek)</option>
+                  <option value="TRUE_FALSE">Doğru / Yanlış</option>
+                  <option value="FILL_BLANK">Boşluk Doldurma</option>
+                  <option value="MATCHING">Eşleştirme</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                  Zorluk Seviyesi
+                </label>
+                <select
+                  value={aiQDifficulty}
+                  onChange={(e) => setAiQDifficulty(e.target.value as any)}
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-medium"
+                >
+                  <option value="BASIC">Temel Seviye (Tanım ve Doğrudan Kavrama)</option>
+                  <option value="MEDIUM">LGS Düzeyi (Ön Bilgi & Çıkarım)</option>
+                  <option value="ADVANCED">İleri Düzey (Yeni Nesil & Analiz)</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                Özel Öğretmen Yönergesi (İsteğe bağlı)
+              </label>
+              <input
+                type="text"
+                value={aiQCustomPrompt}
+                onChange={(e) => setAiQCustomPrompt(e.target.value)}
+                placeholder="Örn: Günlük hayattan bir senaryo içersin, çeldiricisi güçlü olsun..."
+                className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              />
+            </div>
+
+            <div className="flex justify-end gap-2 pt-1">
+              <button
+                type="button"
+                onClick={() => setShowAIQuestionPanel(false)}
+                className="px-3 py-1.5 rounded-xl border border-slate-300 text-xs font-semibold text-slate-600 hover:bg-slate-100"
+              >
+                İptal
+              </button>
+              <button
+                type="button"
+                disabled={generatingAIQuestion}
+                onClick={handleGenerateAIQuestion}
+                className="px-4 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold transition-all disabled:opacity-50 flex items-center gap-1.5 shadow-sm"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>{generatingAIQuestion ? "Soru Üretiliyor..." : "Soruyu Oluştur ve Listeye Ekle"}</span>
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="space-y-4">
           {questions.map((q, idx) => (
