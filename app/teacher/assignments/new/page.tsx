@@ -44,7 +44,7 @@ function NewAssignmentWizardForm() {
 
   // Wizard state
   const [selectedClassId, setSelectedClassId] = useState<string>(preSelectedClassId || "");
-  const [selectedSubject, setSelectedSubject] = useState<string>("");
+  const [selectedSubject, setSelectedSubject] = useState<string>("Matematik");
   const [selectedGrade, setSelectedGrade] = useState<number>(8);
   const [availableUnits, setAvailableUnits] = useState<string[]>([]);
   const [selectedUnit, setSelectedUnit] = useState<string>("");
@@ -88,7 +88,9 @@ function NewAssignmentWizardForm() {
             if (found) {
               setSelectedClassId(found.id);
               setSelectedGrade(found.grade);
-              setSelectedSubject(found.subject);
+              if (found.subject) {
+                setSelectedSubject(found.subject);
+              }
             }
           }
         }
@@ -101,14 +103,20 @@ function NewAssignmentWizardForm() {
     fetchClasses();
   }, [preSelectedClassId]);
 
-  // When class changes, update grade & subject
+  // When class changes, update grade
   const handleSelectClass = (classId: string) => {
     setSelectedClassId(classId);
     const found = classes.find((c) => c.id === classId);
     if (found) {
       setSelectedGrade(found.grade);
-      setSelectedSubject(found.subject);
     }
+  };
+
+  // When subject changes, reset selected unit & outcomes
+  const handleSelectSubject = (subj: string) => {
+    setSelectedSubject(subj);
+    setSelectedUnit("");
+    setSelectedOutcomeIds([]);
   };
 
   // Fetch available units when grade & subject are chosen
@@ -210,8 +218,8 @@ function NewAssignmentWizardForm() {
   };
 
   const stepsList = [
-    "Sınıf",
     "Ders",
+    "Sınıf",
     "MEB Tema",
     "Öğrenme Çıktısı",
     "Konu",
@@ -290,13 +298,89 @@ function NewAssignmentWizardForm() {
 
       {/* Step Panels */}
       <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs">
-        {/* ADIM 1: Sınıf Seç */}
+        {/* ADIM 1: Ders Seç */}
         {step === 1 && (
           <div className="space-y-4">
             <div>
-              <h2 className="text-lg font-black text-slate-900">Adım 1: Sınıf Seçimi</h2>
+              <h2 className="text-lg font-black text-slate-900">Adım 1: Ders Seçimi</h2>
               <p className="text-xs text-slate-500">
-                Bu derse hazırlık görevinin atanacağı sınıfı belirleyiniz.
+                Görevin oluşturulacağı 8. sınıf MEB öğretim programı dersini seçiniz:
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-3.5">
+              {[
+                {
+                  name: "Matematik",
+                  desc: "LGS Sayısal • Çarpanlar ve Katlar, Üslü & Kareköklü İfadeler...",
+                  badge: "Sayısal",
+                },
+                {
+                  name: "Fen Bilimleri",
+                  desc: "LGS Sayısal • Mevsimler ve İklim, DNA ve Genetik Kod, Basınç...",
+                  badge: "Sayısal",
+                },
+                {
+                  name: "Türkçe",
+                  desc: "LGS Sözel • Fiilimsiler, Cümlenin Ögeleri, Paragrafta Anlam...",
+                  badge: "Sözel",
+                },
+                {
+                  name: "T.C. İnkılap Tarihi ve Atatürkçülük",
+                  desc: "LGS Sözel • Bir Kahraman Doğuyor, Millî Uyanış, Millî Mücadele...",
+                  badge: "Sözel",
+                },
+                {
+                  name: "Din Kültürü ve Ahlak Bilgisi",
+                  desc: "LGS Sözel • Kader İnancı, Zekât ve Sadaka, Din ve Hayat...",
+                  badge: "Sözel",
+                },
+                {
+                  name: "İngilizce",
+                  desc: "LGS Sözel • Friendship, Teen Life, In The Kitchen...",
+                  badge: "Yabancı Dil",
+                },
+              ].map((subj) => (
+                <button
+                  key={subj.name}
+                  type="button"
+                  onClick={() => handleSelectSubject(subj.name)}
+                  className={`p-4 rounded-2xl border text-left transition-all flex items-center justify-between group ${
+                    selectedSubject === subj.name
+                      ? "border-indigo-600 bg-indigo-50/60 ring-2 ring-indigo-200"
+                      : "border-slate-200 hover:border-indigo-300 hover:bg-slate-50/70"
+                  }`}
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-slate-900 text-sm">{subj.name}</span>
+                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                        {subj.badge}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 leading-snug">{subj.desc}</p>
+                  </div>
+                  {selectedSubject === subj.name && (
+                    <CheckCircle2 className="w-5 h-5 text-indigo-600 shrink-0 ml-2" />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ADIM 2: Sınıf Seç */}
+        {step === 2 && (
+          <div className="space-y-4">
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-lg font-black text-slate-900">Adım 2: Sınıf Seçimi</h2>
+                <span className="px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold">
+                  {selectedSubject}
+                </span>
+              </div>
+              <p className="text-xs text-slate-500 mt-1">
+                Seçilen <strong>{selectedSubject}</strong> dersi için derse hazırlık görevinin atanacağı sınıfı belirleyiniz.
               </p>
             </div>
 
@@ -307,75 +391,89 @@ function NewAssignmentWizardForm() {
                 <p className="text-xs text-slate-600 mb-3">Henüz bir sınıfınız bulunmuyor.</p>
                 <Link
                   href="/teacher/classes"
-                  className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold"
+                  className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold inline-block"
                 >
                   Önce Sınıf Oluştur
                 </Link>
               </div>
             ) : (
-              <div className="grid sm:grid-cols-2 gap-3">
-                {classes.map((c) => (
-                  <button
-                    key={c.id}
-                    type="button"
-                    onClick={() => handleSelectClass(c.id)}
-                    className={`p-4 rounded-2xl border text-left transition-all flex items-center justify-between ${
-                      selectedClassId === c.id
-                        ? "border-indigo-600 bg-indigo-50/50 ring-2 ring-indigo-200"
-                        : "border-slate-200 hover:border-slate-300"
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-black text-slate-900 text-base">{c.name}</span>
-                        <span className="text-[11px] px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">
-                          {c.grade}. Sınıf
-                        </span>
-                      </div>
-                      <p className="text-xs text-indigo-600 font-medium mt-0.5">{c.subject}</p>
-                    </div>
-                    {selectedClassId === c.id && <CheckCircle2 className="w-5 h-5 text-indigo-600" />}
-                  </button>
-                ))}
+              <div className="space-y-4">
+                {(() => {
+                  const matching = classes.filter((c) => c.subject === selectedSubject);
+                  const others = classes.filter((c) => c.subject !== selectedSubject);
+
+                  return (
+                    <>
+                      {matching.length > 0 && (
+                        <div className="space-y-2">
+                          <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                            {selectedSubject} Dersi Sınıflarınız ({matching.length})
+                          </span>
+                          <div className="grid sm:grid-cols-2 gap-3">
+                            {matching.map((c) => (
+                              <button
+                                key={c.id}
+                                type="button"
+                                onClick={() => handleSelectClass(c.id)}
+                                className={`p-4 rounded-2xl border text-left transition-all flex items-center justify-between ${
+                                  selectedClassId === c.id
+                                    ? "border-indigo-600 bg-indigo-50/50 ring-2 ring-indigo-200"
+                                    : "border-slate-200 hover:border-slate-300"
+                                }`}
+                              >
+                                <div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-black text-slate-900 text-base">{c.name}</span>
+                                    <span className="text-[11px] px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
+                                      {c.grade}. Sınıf
+                                    </span>
+                                  </div>
+                                  <p className="text-xs text-indigo-600 font-medium mt-0.5">{c.subject}</p>
+                                </div>
+                                {selectedClassId === c.id && <CheckCircle2 className="w-5 h-5 text-indigo-600" />}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {others.length > 0 && (
+                        <div className="space-y-2 pt-2">
+                          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                            {matching.length > 0 ? "Diğer Sınıflarınız" : "Mevcut Sınıflarınız"} ({others.length})
+                          </span>
+                          <div className="grid sm:grid-cols-2 gap-3">
+                            {others.map((c) => (
+                              <button
+                                key={c.id}
+                                type="button"
+                                onClick={() => handleSelectClass(c.id)}
+                                className={`p-4 rounded-2xl border text-left transition-all flex items-center justify-between ${
+                                  selectedClassId === c.id
+                                    ? "border-indigo-600 bg-indigo-50/50 ring-2 ring-indigo-200"
+                                    : "border-slate-200 hover:border-slate-300"
+                                }`}
+                              >
+                                <div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-black text-slate-900 text-base">{c.name}</span>
+                                    <span className="text-[11px] px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">
+                                      {c.grade}. Sınıf
+                                    </span>
+                                  </div>
+                                  <p className="text-xs text-slate-500 font-medium mt-0.5">{c.subject}</p>
+                                </div>
+                                {selectedClassId === c.id && <CheckCircle2 className="w-5 h-5 text-indigo-600" />}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
             )}
-          </div>
-        )}
-
-        {/* ADIM 2: Ders Seç */}
-        {step === 2 && (
-          <div className="space-y-4">
-            <div>
-              <h2 className="text-lg font-black text-slate-900">Adım 2: Ders Seçimi</h2>
-              <p className="text-xs text-slate-500">
-                Seçilen sınıf için geçerli dersi kontrol edin veya değiştirin.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-3">
-              {[
-                "Matematik",
-                "Fen Bilimleri",
-                "T.C. İnkılap Tarihi ve Atatürkçülük",
-                "Din Kültürü ve Ahlak Bilgisi",
-                "İngilizce",
-                "Türkçe",
-              ].map((subj) => (
-                <button
-                  key={subj}
-                  type="button"
-                  onClick={() => setSelectedSubject(subj)}
-                  className={`p-4 rounded-2xl border text-left transition-all flex items-center justify-between ${
-                    selectedSubject === subj
-                      ? "border-indigo-600 bg-indigo-50/50 ring-2 ring-indigo-200"
-                      : "border-slate-200 hover:border-slate-300"
-                  }`}
-                >
-                  <span className="font-bold text-slate-800 text-sm">{subj}</span>
-                  {selectedSubject === subj && <CheckCircle2 className="w-5 h-5 text-indigo-600" />}
-                </button>
-              ))}
-            </div>
           </div>
         )}
 
@@ -804,8 +902,16 @@ function NewAssignmentWizardForm() {
             <button
               type="button"
               onClick={() => {
-                if (step === 1 && !selectedClassId) {
-                  setError("Lütfen bir sınıf seçiniz.");
+                if (step === 1 && !selectedSubject) {
+                  setError("Lütfen bir ders seçiniz.");
+                  return;
+                }
+                if (step === 2 && !selectedClassId) {
+                  setError("Lütfen görevin atanacağı bir sınıf seçiniz.");
+                  return;
+                }
+                if (step === 3 && !selectedUnit) {
+                  setError("Lütfen bir MEB ünitesi seçiniz.");
                   return;
                 }
                 if (step === 4 && selectedOutcomeIds.length === 0) {
