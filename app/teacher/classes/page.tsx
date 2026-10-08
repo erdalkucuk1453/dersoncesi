@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   Users,
   Plus,
+  UserPlus,
   Copy,
   Check,
   GraduationCap,
@@ -12,6 +13,7 @@ import {
   ArrowRight,
   AlertCircle,
 } from "lucide-react";
+import { AddStudentModal } from "@/components/AddStudentModal";
 
 interface ClassItem {
   id: string;
@@ -30,6 +32,9 @@ export default function TeacherClassesPage() {
   const [classes, setClasses] = useState<ClassItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
+
+  // Add Student Modal State
+  const [addStudentClass, setAddStudentClass] = useState<{ id: string; name: string } | null>(null);
 
   // New Class Form State
   const [showModal, setShowModal] = useState(false);
@@ -193,22 +198,33 @@ export default function TeacherClassesPage() {
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <Link
-                  href={`/teacher/assignments/new?classId=${c.id}`}
-                  className="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                <button
+                  type="button"
+                  onClick={() => setAddStudentClass({ id: c.id, name: c.name })}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition-colors"
                 >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Görev Ata</span>
-                </Link>
+                  <UserPlus className="w-3.5 h-3.5" />
+                  <span>Öğrenci Kaydet</span>
+                </button>
 
-                <Link
-                  href={`/teacher/classes/${c.id}`}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1"
-                >
-                  <span>Öğrenci Listesi</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                <div className="flex items-center gap-3">
+                  <Link
+                    href={`/teacher/assignments/new?classId=${c.id}`}
+                    className="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Görev Ata</span>
+                  </Link>
+
+                  <Link
+                    href={`/teacher/classes/${c.id}`}
+                    className="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1"
+                  >
+                    <span>Öğrenciler</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
@@ -295,6 +311,19 @@ export default function TeacherClassesPage() {
             </form>
           </div>
         </div>
+      )}
+
+      {/* Add Student Modal */}
+      {addStudentClass && (
+        <AddStudentModal
+          classId={addStudentClass.id}
+          className={addStudentClass.name}
+          isOpen={true}
+          onClose={() => setAddStudentClass(null)}
+          onSuccess={() => {
+            fetchClasses();
+          }}
+        />
       )}
     </div>
   );

@@ -15,6 +15,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { StatusBadge } from "@/components/StatusBadge";
+import { ClassStudentsManager } from "@/components/ClassStudentsManager";
 
 export default async function TeacherClassDetailPage({
   params,
@@ -89,43 +90,19 @@ export default async function TeacherClassDetailPage({
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
-        {/* Left 2 Cols: Students Roster */}
-        <div className="lg:col-span-2 bg-white rounded-3xl border border-slate-200 p-6 shadow-xs">
-          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-            <div>
-              <h2 className="text-base font-black text-slate-900">Kayıtlı Öğrenciler</h2>
-              <p className="text-xs text-slate-500">
-                Toplam {classData.members.length} öğrenci sınıfa katıldı
-              </p>
-            </div>
-          </div>
-
-          {classData.members.length === 0 ? (
-            <div className="py-8 text-center text-slate-400 text-xs">
-              Bu sınıfa henüz öğrenci katılmadı. Katılım kodunu ({classData.joinCode}) öğrencilerinizle paylaşınız.
-            </div>
-          ) : (
-            <div className="divide-y divide-slate-100">
-              {classData.members.map((m, idx) => (
-                <div key={m.id} className="py-3 flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-3">
-                    <span className="text-slate-400 font-mono w-4">{idx + 1}.</span>
-                    <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold flex items-center justify-center">
-                      {m.student.name.charAt(0).toUpperCase()}
-                    </div>
-                    <div>
-                      <p className="font-bold text-slate-900">{m.student.name}</p>
-                      <p className="text-[11px] text-slate-400">{m.student.email}</p>
-                    </div>
-                  </div>
-
-                  <span className="text-slate-400 text-[11px]">
-                    Katıldı: {new Date(m.joinedAt).toLocaleDateString("tr-TR")}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
+        {/* Left 2 Cols: Students Manager */}
+        <div className="lg:col-span-2">
+          <ClassStudentsManager
+            classId={classData.id}
+            className={classData.name}
+            joinCode={classData.joinCode}
+            initialStudents={classData.members.map((m) => ({
+              id: m.student.id,
+              name: m.student.name,
+              email: m.student.email,
+              joinedAt: m.joinedAt,
+            }))}
+          />
         </div>
 
         {/* Right Col: Assignments in this class */}
