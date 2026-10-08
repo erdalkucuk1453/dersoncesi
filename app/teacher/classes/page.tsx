@@ -6,6 +6,7 @@ import {
   Users,
   Plus,
   UserPlus,
+  Trash2,
   Copy,
   Check,
   GraduationCap,
@@ -14,6 +15,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { AddStudentModal } from "@/components/AddStudentModal";
+import { DeleteClassModal } from "@/components/DeleteClassModal";
 
 interface ClassItem {
   id: string;
@@ -35,6 +37,10 @@ export default function TeacherClassesPage() {
 
   // Add Student Modal State
   const [addStudentClass, setAddStudentClass] = useState<{ id: string; name: string } | null>(null);
+
+  // Delete Class Modal State
+  const [deleteTargetClass, setDeleteTargetClass] = useState<ClassItem | null>(null);
+  const [actionSuccess, setActionSuccess] = useState<string | null>(null);
 
   // New Class Form State
   const [showModal, setShowModal] = useState(false);
@@ -124,6 +130,13 @@ export default function TeacherClassesPage() {
         </button>
       </div>
 
+      {actionSuccess && (
+        <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-2">
+          <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+          <span>{actionSuccess}</span>
+        </div>
+      )}
+
       {loading ? (
         <div className="p-12 text-center text-slate-400 text-sm">Sınıflar yükleniyor...</div>
       ) : classes.length === 0 ? (
@@ -153,9 +166,19 @@ export default function TeacherClassesPage() {
                   <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-700 font-black text-lg flex items-center justify-center">
                     {c.grade}
                   </div>
-                  <span className="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold">
-                    {c.grade}. Sınıf
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold">
+                      {c.grade}. Sınıf
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setDeleteTargetClass(c)}
+                      className="p-1.5 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                      title="Sınıfı Sil"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
 
                 <h3 className="text-xl font-black text-slate-900">{c.name}</h3>
@@ -321,6 +344,27 @@ export default function TeacherClassesPage() {
           isOpen={true}
           onClose={() => setAddStudentClass(null)}
           onSuccess={() => {
+            fetchClasses();
+          }}
+        />
+      )}
+
+      {/* Delete Class Modal */}
+      {deleteTargetClass && (
+        <DeleteClassModal
+          isOpen={true}
+          classId={deleteTargetClass.id}
+          className={deleteTargetClass.name}
+          grade={deleteTargetClass.grade}
+          subject={deleteTargetClass.subject}
+          memberCount={deleteTargetClass._count.members}
+          assignmentCount={deleteTargetClass._count.assignments}
+          onClose={() => setDeleteTargetClass(null)}
+          onDeleted={() => {
+            const name = deleteTargetClass.name;
+            setDeleteTargetClass(null);
+            setActionSuccess(`"${name}" sınıfı başarıyla silindi.`);
+            setTimeout(() => setActionSuccess(null), 3000);
             fetchClasses();
           }}
         />

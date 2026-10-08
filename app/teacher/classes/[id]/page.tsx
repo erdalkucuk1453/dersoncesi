@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { StatusBadge } from "@/components/StatusBadge";
 import { ClassStudentsManager } from "@/components/ClassStudentsManager";
+import { DeleteClassButton } from "@/components/DeleteClassButton";
 
 export default async function TeacherClassDetailPage({
   params,
@@ -79,13 +80,24 @@ export default async function TeacherClassDetailPage({
             </p>
           </div>
 
-          <Link
-            href={`/teacher/assignments/new?classId=${classData.id}`}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-xs shadow-indigo-200 transition-colors"
-          >
-            <PlusCircle className="w-4 h-4" />
-            <span>Bu Sınıfa Yeni Görev Ata</span>
-          </Link>
+          <div className="flex items-center gap-2">
+            <DeleteClassButton
+              classId={classData.id}
+              className={classData.name}
+              grade={classData.grade}
+              subject={classData.subject}
+              memberCount={classData.members.length}
+              assignmentCount={classData.assignments.length}
+            />
+
+            <Link
+              href={`/teacher/assignments/new?classId=${classData.id}`}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-xs shadow-indigo-200 transition-colors"
+            >
+              <PlusCircle className="w-4 h-4" />
+              <span>Bu Sınıfa Yeni Görev Ata</span>
+            </Link>
+          </div>
         </div>
       </div>
 
